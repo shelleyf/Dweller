@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/creator_copy.png</file>
+        <file>res/creator_cut.png</file>
+        <file>res/creator_delete.png</file>
+        <file>res/creator_device.png</file>
+        <file>res/creator_door.png</file>
+        <file>res/creator_floor.png</file>
+        <file>res/creator_new.png</file>
+        <file>res/creator_open.png</file>
+        <file>res/creator_paste.png</file>
+        <file>res/creator_save.png</file>
+        <file>res/creator_saveAs.png</file>
+        <file>res/creator_select.png</file>
+        <file>res/creator_startSimulator.png</file>
+        <file>res/creator_wall.png</file>
+        <file>res/creator_window.png</file>
+        <file>res/simulator_pause.png</file>
+        <file>res/simulator_start.png</file>
+        <file>res/simulator_stop.png</file>
+        <file>res/statistics-piechart.png</file>
+        <file>res/statistics.png</file>
+        <file>main.cpp</file>
+        <file>mainwindow.cpp</file>
+        <file>mainwindow.h</file>
+        <file>res/creator_setting.png</file>
+        <file>style.qss</file>
+        <file>res/house/house1.jpg</file>
+        <file>res/house/house10.jpg</file>
+        <file>res/house/house2.jpg</file>
+        <file>res/house/house3.jpg</file>
+        <file>res/house/house4.jpg</file>
+        <file>res/house/house5.jpg</file>
+        <file>res/house/house6.jpg</file>
+        <file>res/house/house7.jpg</file>
+        <file>res/house/house8.jpg</file>
+        <file>res/house/house9.jpg</file>
+        <file>simulator.qml</file>
+        <file>lib/qtlogo.png</file>
+        <file>lib/gl-matrix.js</file>
+        <file>lib/simulator.js</file>
+        <file>lib/qt-three.js/three.js-master/build/three.js</file>
+    </qresource>
+</RCC>
