@@ -61,7 +61,6 @@ Item{
                 GroupBox {
                     title: "Timer"
                     Layout.fillWidth: true
-                    Layout.columnSpan: grid.columns
                     Label{
                         text:"00:00:00"
                     }
@@ -70,7 +69,6 @@ Item{
                 GroupBox {
                     title: "Simulator"
                     Layout.fillWidth: true
-                    Layout.columnSpan: grid.columns
 
                     ColumnLayout{
                         anchors.fill: parent
@@ -87,7 +85,8 @@ Item{
                         }
 
                         RowLayout {
-                            anchors.top:setpm.bottom +20;
+                            anchors.top:setpm.bottom;
+                            anchors.margins: 5;
                             Button { text: "Start" }
                             Button { text: "pause" }
                             Button { text: "stop" }
@@ -98,7 +97,6 @@ Item{
                 GroupBox {
                     title: "Mode"
                     Layout.fillWidth: true
-                    Layout.columnSpan: grid.columns
 
                     ComboBox {
                         editable: true

@@ -40,5 +40,19 @@
         <file>lib/gl-matrix.js</file>
         <file>lib/simulator.js</file>
         <file>lib/qt-three.js/three.js-master/build/three.js</file>
+        <file>lib/qt-three.js/three.js-master/build/ammo.js</file>
+        <file>lib/qt-three.js/three.js-master/build/CanvasRenderer.js</file>
+        <file>lib/qt-three.js/three.js-master/build/Detector.js</file>
+        <file>lib/qt-three.js/three.js-master/build/FlyControls.js</file>
+        <file>lib/qt-three.js/three.js-master/build/OrbitControls.js</file>
+        <file>lib/qt-three.js/three.js-master/build/physi.js</file>
+        <file>lib/qt-three.js/three.js-master/build/physijs_worker.js</file>
+        <file>lib/qt-three.js/three.js-master/build/RollControls.js</file>
+        <file>res/texture/grid.png</file>
+        <file>res/texture/moon.jpg</file>
+        <file>res/texture/stars.gif</file>
+        <file>res/texture/texture_earth.jpg</file>
+        <file>res/texture/texture_earth2.jpg</file>
+        <file>res/texture/wood-2.jpg</file>
     </qresource>
 </RCC>

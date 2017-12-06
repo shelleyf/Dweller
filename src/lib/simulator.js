@@ -1,10 +1,13 @@
 Qt.include("/lib/qt-three.js/three.js-master/build/three.js")
+Qt.include("/lib/qt-three.js/three.js-master/build/Detector.js")
+//Qt.include("/lib/qt-three.js/three.js-master/build/OrbitControls.js")
 
-var camera, scene, renderer, mesh;
-var cameraRig, activeCamera, activeHelper;
-var cameraPerspective, cameraOrtho;
-var cameraPerspectiveHelper, cameraOrthoHelper;
-var frustumSize = 600;
+var camera, scene, renderer, mesh, controls, aspect;
+var SCREEN_WIDTH, SCREEN_HEIGHT;
+var textureLoader;
+var clock;
+
+var obj;
 
 function log(message) {
     if (canvas3d.logAllCalls)
@@ -12,178 +15,150 @@ function log(message) {
 }
 
 function initializeGL(canvas) {
-    var SCREEN_WIDTH = canvas.width;
-    var SCREEN_HEIGHT = canvas.height;
-    var aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+    SCREEN_WIDTH = canvas.width;
+    SCREEN_HEIGHT = canvas.height;
+    aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
 
     camera = new THREE.PerspectiveCamera( 50, 0.5 * aspect, 1, 10000 );
+    camera.position.x = -31;
+    camera.position.y = 50;//18;
+    camera.position.z = 30;
 
-    camera.position.z = 2500;
-
-    scene = new THREE.Scene();
-
-    cameraPerspective = new THREE.PerspectiveCamera( 50, 0.5 * aspect, 150, 1000 );
-
-    cameraPerspectiveHelper = new THREE.CameraHelper( cameraPerspective );
-    scene.add( cameraPerspectiveHelper );
-
-    cameraOrtho = new THREE.OrthographicCamera( 0.5 * frustumSize * aspect / - 2,
-                                               0.5 * frustumSize * aspect / 2,
-                                               frustumSize / 2,
-                                               frustumSize / - 2, 150, 1000 );
-    cameraOrthoHelper = new THREE.CameraHelper( cameraOrtho );
-    scene.add( cameraOrthoHelper );
-
-    activeCamera = cameraPerspective;
-    activeHelper = cameraPerspectiveHelper;
-
-
-    // counteract different front orientation of cameras vs rig
-
-    cameraOrtho.rotation.y = Math.PI;
-    cameraPerspective.rotation.y = Math.PI;
-
-    cameraRig = new THREE.Group();
-
-    cameraRig.add( cameraPerspective );
-    cameraRig.add( cameraOrtho );
-
-    scene.add( cameraRig );
-
-    //
-
-    mesh = new THREE.Mesh(
-        new THREE.SphereBufferGeometry( 100, 16, 8 ),
-        new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } )
-    );
-    scene.add( mesh );
-
-    var mesh2 = new THREE.Mesh(
-        new THREE.SphereBufferGeometry( 50, 16, 8 ),
-        new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } )
-    );
-    mesh2.position.y = 150;
-    mesh.add( mesh2 );
-
-    var mesh3 = new THREE.Mesh(
-        new THREE.SphereBufferGeometry( 5, 16, 8 ),
-        new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
-    );
-    mesh3.position.z = 150;
-    cameraRig.add( mesh3 );
-
-    //
-
-    var geometry = new THREE.Geometry();
-
-    for ( var i = 0; i < 10000; i ++ ) {
-
-        var vertex = new THREE.Vector3();
-        vertex.x = THREE.Math.randFloatSpread( 2000 );
-        vertex.y = THREE.Math.randFloatSpread( 2000 );
-        vertex.z = THREE.Math.randFloatSpread( 2000 );
-
-        geometry.vertices.push( vertex );
-
-    }
-
-    var particles = new THREE.Points( geometry, new THREE.PointsMaterial( { color: 0x888888 } ) );
-    scene.add( particles );
-
-    //
+    //controls = new THREE.OrbitControls(camera);
+    clock = new THREE.Clock();
 
     renderer = new THREE.Canvas3DRenderer(
                 { canvas: canvas, antialias: true, devicePixelRatio: canvas.devicePixelRatio });
     renderer.setPixelRatio( canvas.devicePixelRatio );
     renderer.setSize( canvas.width, canvas.height );
-    renderer.autoClear = false;
+
+    scene = new THREE.Scene();
+
+    textureLoader = new THREE.TextureLoader();
+    var gridTexture = textureLoader.load("qrc:/res/texture/grid.png");
+    gridTexture.wrapS = gridTexture.wrapT = THREE.RepeatWrapping;
+    gridTexture.repeat.set(40,40);
+    gridTexture.anisotropy = 16;
+
+    var groundGeometry = new THREE.BoxGeometry(40,1,40,1,1,1);
+    var groundMaterial = new THREE.MeshPhongMaterial({map:gridTexture});
+    var ground = new THREE.Mesh(groundGeometry,groundMaterial);
+    ground.position.x = 0;
+    ground.position.y = -1;
+    ground.position.z = 0;
+
+    //ground.rotation.x = -Math.PI/2;
+    scene.add(ground);
+
+    var starGeometry = new THREE.Geometry();
+
+    for (var i=0;i<10000;i++){
+        var vertex = new THREE.Vector3();
+        vertex.x = THREE.Math.randFloatSpread(2000)+50;
+        vertex.y = THREE.Math.randFloatSpread(2000)+50;
+        vertex.z = THREE.Math.randFloatSpread(2000)+50;
+
+        starGeometry.vertices.push(vertex);
+    }
+
+    var stars = new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0x888888}));
+    scene.add(stars);
+
+
+
+    var ambientLight = new THREE.AmbientLight( 0x404040 );
+    scene.add( ambientLight );
+
+    var light = new THREE.DirectionalLight( 0xffffff, 1 );
+    light.position.set( -7, 10, 15 );
+    light.castShadow = true;
+    var d = 10;
+    light.shadow.camera.left = -d;
+    light.shadow.camera.right = d;
+    light.shadow.camera.top = d;
+    light.shadow.camera.bottom = -d;
+
+    light.shadow.camera.near = 2;
+    light.shadow.camera.far = 50;
+
+    light.shadow.mapSize.width = 1024;
+    light.shadow.mapSize.height = 1024;
+
+    light.shadow.bias = -0.001;
+    scene.add( light );
+
+    scene.add(createShape());
+
 }
 
 function resizeGL(canvas) {
 
-    var SCREEN_WIDTH = canvas.width;
-    var SCREEN_HEIGHT = canvas.height;
-    var aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
-
-    renderer.setPixelRatio( canvas.devicePixelRatio );
-    renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-
-    camera.aspect = 0.5 * aspect;
+    camera.aspect = canvas.width / canvas.height;
     camera.updateProjectionMatrix();
 
-    cameraPerspective.aspect = 0.5 * aspect;
-    cameraPerspective.updateProjectionMatrix();
-
-    cameraOrtho.left   = - 0.5 * frustumSize * aspect / 2;
-    cameraOrtho.right  =   0.5 * frustumSize * aspect / 2;
-    cameraOrtho.top    =   frustumSize / 2;
-    cameraOrtho.bottom = - frustumSize / 2;
-    cameraOrtho.updateProjectionMatrix();
-
-}
-
-function changeProjection(projection) {
-
-    if ( projection === 0 ) {
-
-        activeCamera = cameraOrtho;
-        activeHelper = cameraOrthoHelper;
-
-    } else if ( projection === 1) {
-
-        activeCamera = cameraPerspective;
-        activeHelper = cameraPerspectiveHelper;
-
-    }
+    renderer.setPixelRatio(canvas.devicePixelRatio);
+    renderer.setSize( canvas.width, canvas.height );
 
 }
 
 function paintGL(canvas) {
-
-    var r = Date.now() * 0.0005;
-
-    mesh.position.x = 700 * Math.cos( r );
-    mesh.position.z = 700 * Math.sin( r );
-    mesh.position.y = 700 * Math.sin( r );
-
-    mesh.children[ 0 ].position.x = 70 * Math.cos( 2 * r );
-    mesh.children[ 0 ].position.z = 70 * Math.sin( r );
-
-    if ( activeCamera === cameraPerspective ) {
-
-        cameraPerspective.fov = 35 + 30 * Math.sin( 0.5 * r );
-        cameraPerspective.far = mesh.position.length();
-        cameraPerspective.updateProjectionMatrix();
-
-        cameraPerspectiveHelper.update();
-        cameraPerspectiveHelper.visible = true;
-
-        cameraOrthoHelper.visible = false;
-
-    } else {
-
-        cameraOrtho.far = mesh.position.length();
-        cameraOrtho.updateProjectionMatrix();
-
-        cameraOrthoHelper.update();
-        cameraOrthoHelper.visible = true;
-
-        cameraPerspectiveHelper.visible = false;
-
-    }
-
-    cameraRig.lookAt( mesh.position );
-
-    renderer.clear();
-
-    activeHelper.visible = false;
-
-    renderer.setViewport( 0, 0, canvas.width/2, canvas.height );
-    renderer.render( scene, activeCamera );
-
-    activeHelper.visible = true;
-
-    renderer.setViewport( canvas.width/2, 0, canvas.width/2, canvas.height );
+    camera.lookAt(scene.position);
     renderer.render( scene, camera );
-
 }
+function createShape(){
+    var options = {
+        amount: 2,
+        bevelThickness: 2,
+        bevelSize: 0.5,
+        bevelSegments: 3,
+        bevelEnabled: true,
+        curveSegments: 12,
+        steps: 1
+    };
+    obj = createMesh(new THREE.ExtrudeGeometry(drawShape(),options))
+
+    obj.rotation.x = Math.PI/2;
+    obj.position.y = 3;
+
+    return obj;
+}
+
+function drawShape(){
+    var shape = new THREE.Shape();
+    shape.moveTo(0,0);
+    shape.lineTo(10,0);
+    shape.lineTo(10,1);
+    shape.lineTo(12,1);
+    shape.lineTo(12,5);
+    shape.lineTo(8,5);
+    shape.lineTo(8,10);
+    shape.lineTo(0,10);
+    shape.lineTo(0,0);
+
+    var hole = new THREE.Path();
+    hole.moveTo(0.2,0.2);
+    hole.lineTo(9.8,0.2);
+    hole.lineTo(9.8,1.2);
+    hole.lineTo(11.8,1.2);
+    hole.lineTo(11.8,4.8);
+    hole.lineTo(7.8,4.8);
+    hole.lineTo(7.8,9.8);
+    hole.lineTo(0.2,9.8);
+    hole.lineTo(0.2,0.2);
+
+    shape.holes.push(hole);
+    return shape;
+}
+
+function createMesh(geom){
+    var color = new THREE.Color(0xC07000);
+    var material = new THREE.MeshLambertMaterial({
+        color:color,
+        emissive:color
+    });
+    var mesh = new THREE.Mesh(geom,material);
+    return mesh;
+}
+
+
+
