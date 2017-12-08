@@ -22,7 +22,13 @@ SOURCES += \
     lib/draw/window.cpp \
     lib/draw/door.cpp \
     lib/draw/device.cpp \
-    lib/draw/floor.cpp
+    lib/draw/floor.cpp \
+    lib/tool/tool.cpp \
+    lib/tool/drawdevicetool.cpp \
+    lib/tool/drawdoortool.cpp \
+    lib/tool/drawwindowtool.cpp \
+    lib/tool/drawfloortool.cpp \
+    lib/tool/drawwalltool.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -35,7 +41,13 @@ HEADERS += \
     lib/draw/window.h \
     lib/draw/door.h \
     lib/draw/device.h \
-    lib/draw/floor.h
+    lib/draw/floor.h \
+    lib/tool/tool.h \
+    lib/tool/drawdevicetool.h \
+    lib/tool/drawdoortool.h \
+    lib/tool/drawwindowtool.h \
+    lib/tool/drawfloortool.h \
+    lib/tool/drawwalltool.h
 
 SUBDIRS += \
     Dweller.pro

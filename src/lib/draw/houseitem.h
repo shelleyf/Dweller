@@ -15,7 +15,7 @@ public:
     virtual bool isSelected() = 0;
     virtual bool contains(int x, int y) = 0;
 
-    QVector2D itemPos;
+    QPoint itemPos;
 
     QString noteText;
 

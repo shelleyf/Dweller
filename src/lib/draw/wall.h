@@ -16,6 +16,18 @@ public:
     QRect getBoundary() override;
     bool contains(int x, int y) override;
 
+    QPoint getStartPoint();
+    void setStartPoint(const QPoint &value);
+
+    QPoint getEndPoint();
+    void setEndPoint(const QPoint &value);
+
+protected:
+    QColor m_wallColor;
+    QPoint m_wallstart;
+    QPoint m_wallEnd;
+    int m_wallThickness;
+
 
 
 
