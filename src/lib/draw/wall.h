@@ -17,16 +17,17 @@ public:
     bool contains(int x, int y) override;
 
     QPoint getStartPoint();
-    void setStartPoint(const QPoint &value);
+    void setStartPoint(QPoint value);
 
     QPoint getEndPoint();
-    void setEndPoint(const QPoint &value);
+    void setEndPoint(QPoint value);
 
 protected:
-    QColor m_wallColor;
-    QPoint m_wallstart;
-    QPoint m_wallEnd;
-    int m_wallThickness;
+    QColor m_WallColor;
+    QPoint m_Wallstart;
+    QPoint m_WallEnd;
+    int m_WallThickness;
+
 
 
 
