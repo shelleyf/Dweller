@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QVector2D>
+#include <QVector>
 
 class HouseItem : public QGraphicsItem
 {
