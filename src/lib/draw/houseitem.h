@@ -5,6 +5,8 @@
 #include <QGraphicsItem>
 #include <QVector2D>
 #include <QVector>
+#include <Qpen>
+#include <QColor>
 
 class HouseItem : public QGraphicsItem
 {
@@ -16,14 +18,19 @@ public:
     virtual bool isSelected() = 0;
     virtual bool contains(int x, int y) = 0;
 
-    QPoint itemPos;
+    virtual void setPen(QColor color,int width);
+    virtual QPen getPen() = 0;
 
+    QPoint itemPos;
     QString noteText;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+
+private:
+    QPen m_pen;
 
 };
 

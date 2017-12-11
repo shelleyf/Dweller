@@ -2,12 +2,14 @@
 #define FLOOR_H
 
 #include "houseitem.h"
-
+#include <QPen>
 class Floor : public HouseItem
 {
 public:
     Floor();
 
+    QPen getPen() override;
+    void setPen(QColor color,int width) override;
     void draw(QPainter *painter) override;
 
     QRect getBoundary() override;
@@ -19,6 +21,9 @@ public:
 
 protected:
     QVector<QPoint> floorPoint;
+
+private:
+
 };
 
 #endif // FLOOR_H

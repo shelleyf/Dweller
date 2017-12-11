@@ -1,12 +1,13 @@
 #ifndef DRAWFLOORTOOL_H
 #define DRAWFLOORTOOL_H
 #include "lib/draw/floor.h"
+#include "lib/ui/dwellercanvas.h"
 #include "tool.h"
 
 class DrawFloorTool : public Tool
 {
 public:
-    DrawFloorTool();
+    DrawFloorTool(DwellerCanvas *canvas);
 
 protected:
     void mousePress(QMouseEvent *event) override;
@@ -17,7 +18,7 @@ private:
     Floor m_Floor;
     bool m_ClickPressed;
     QPoint m_startPosition;
-
+    DwellerCanvas *m_canvas;
 };
 
 #endif // DRAWFLOORTOOL_H

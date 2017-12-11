@@ -7,8 +7,8 @@ class Window : public HouseItem
 public:
     Window();
 
-    void setWindowColor(QColor &val);
-    void setWindowThickness(int &val);
+    QPen getPen() override;
+    void setPen(QColor color,int width) override;
     void draw(QPainter *painter) override;
 
     QRect getBoundary() override;
@@ -33,6 +33,7 @@ protected:
     int m_WindowThickness;
     int m_WindowHeight;
     float m_WindowLeakage;
+
 };
 
 #endif // WINDOW_H

@@ -4,6 +4,6 @@
 
 HouseItem::HouseItem()
 {
-
+    m_pen = new QPen();
 
 }

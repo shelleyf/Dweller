@@ -7,6 +7,8 @@ class Device : public HouseItem
 public:
     Device();
 
+    QPen getPen() override;
+    void setPen(QColor color,int width) override;
     void draw(QPainter *painter) override;
 
     QRect getBoundary() override;

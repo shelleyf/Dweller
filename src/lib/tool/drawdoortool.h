@@ -1,12 +1,13 @@
 #ifndef DRAWDOORTOOL_H
 #define DRAWDOORTOOL_H
 #include "lib/draw/door.h"
+#include "lib/ui/dwellercanvas.h"
 #include "tool.h"
 
 class DrawDoorTool : public Tool
 {
 public:
-    DrawDoorTool();
+    DrawDoorTool(DwellerCanvas *canvas);
 protected:
     void mousePress(QMouseEvent *event) override;
     void mouseMove(QMouseEvent *event) override;
@@ -15,7 +16,9 @@ protected:
 private:
     Door m_Door;
     bool m_ClickPressed;
-    QPoint m_startPosition;
+    QPoint m_StartPosition;
+    QPoint m_EndPosition;
+    DwellerCanvas *m_canvas;
 };
 
 #endif // DRAWDOORTOOL_H

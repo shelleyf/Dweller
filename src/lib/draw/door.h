@@ -8,8 +8,8 @@ class Door : public HouseItem
 public:
     Door();
 
-    void setDoorColor(QColor &val);
-    void setDoorThickness(int &val);
+    QPen getPen() override;
+    void setPen(QColor color,int width) override;
     void draw(QPainter *painter) override;
 
     QRect getBoundary() override;
@@ -27,6 +27,7 @@ public:
     float getDoorLeakage();
     void setDoorLeakage(float leakage);
 
+
 protected:
     QColor m_DoorColor;
     QPoint m_Doorstart;
@@ -34,6 +35,9 @@ protected:
     int m_DoorThickness;
     int m_DoorHeight;
     float m_DoorLeakage;
+
+    QLine m_Line;
+
 
 };
 

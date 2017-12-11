@@ -1,6 +1,8 @@
 #ifndef WALL_H
 #define WALL_H
 #include <QColor>
+#include <QLine>
+#include <Qpen>
 
 #include "houseitem.h"
 class Wall : public HouseItem
@@ -9,8 +11,9 @@ public:
     Wall();
     ~Wall();
 
-    void setWallColor(QColor &val);
-    void setWallThickness(int &val);
+    QPen getPen() override;
+    void setPen(QColor color,int width) override;
+
     void draw(QPainter *painter) override;
 
     QRect getBoundary() override;
@@ -24,13 +27,10 @@ public:
 
 protected:
     QColor m_WallColor;
-    QPoint m_Wallstart;
+    QPoint m_WallStart;
     QPoint m_WallEnd;
     int m_WallThickness;
-
-
-
-
+    QLine m_Line;
 
 };
 

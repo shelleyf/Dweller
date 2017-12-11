@@ -27,6 +27,8 @@ public:
     void setZoomDelta(qreal delta);
     qreal zoomDelta() const;
 
+    QGraphicsScene *scene;
+
 public slots:
     void translate(QPointF delta);
 

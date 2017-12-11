@@ -1,12 +1,13 @@
 #ifndef DRAWWALLTOOL_H
 #define DRAWWALLTOOL_H
+#include "lib/ui/dwellercanvas.h"
 #include "lib/draw/wall.h"
 #include "tool.h"
 
 class DrawWallTool : public Tool
 {
 public:
-    DrawWallTool();
+    DrawWallTool(DwellerCanvas *canvas);
 
 protected:
     void mousePress(QMouseEvent *event) override;
@@ -16,7 +17,9 @@ protected:
 private:
     Wall m_Wall;
     bool m_ClickPressed;
-    QPoint m_startPosition;
+    QPoint m_StartPosition;
+    QPoint m_EndPosition;
+    DwellerCanvas *m_canvas;
 };
 
 #endif // DRAWWALLTOOL_H
