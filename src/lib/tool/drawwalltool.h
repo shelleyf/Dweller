@@ -15,7 +15,7 @@ protected:
     void mouseRelease(QMouseEvent *event) override;
 
 private:
-    Wall m_Wall;
+    Wall *m_Wall;
     bool m_ClickPressed;
     QPoint m_StartPosition;
     QPoint m_EndPosition;

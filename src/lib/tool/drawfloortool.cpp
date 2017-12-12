@@ -1,6 +1,18 @@
 #include "drawfloortool.h"
 
-DrawFloorTool::DrawFloorTool()
+DrawFloorTool::DrawFloorTool(DwellerCanvas *canvas)
 {
+    m_canvas = canvas;
+}
+
+void DrawFloorTool::mousePress(QMouseEvent *event){
+
+}
+
+void DrawFloorTool::mouseMove(QMouseEvent *event){
+
+}
+
+void DrawFloorTool::mouseRelease(QMouseEvent *event){
 
 }

@@ -17,11 +17,11 @@ public:
     QPoint getWindowPosition(int position);
     void setWindowPosition(QPoint point,int position);
 
-    int getDoorHeight();
-    void setDoorHeight(int height);
+    float getWindowHeight();
+    void setWindowHeight(float height);
 
-    float getDoorLeakage();
-    void setDoorLeakage(float leakage);
+    float getWindowLeakage();
+    void setWindowLeakage(float leakage);
 
 protected:
     QColor m_WindowColor;
@@ -30,9 +30,10 @@ protected:
     QPoint m_WindowBL;
     QPoint m_WindowBR;
 
-    int m_WindowThickness;
-    int m_WindowHeight;
+    float m_WindowHeight;
     float m_WindowLeakage;
+
+    QLine m_Line;
 
 };
 

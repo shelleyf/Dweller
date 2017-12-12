@@ -21,8 +21,8 @@ public:
     QPoint getEndPoint();
     void setEndPoint(QPoint value);
 
-    int getDoorHeight();
-    void setDoorHeight(int height);
+    float getDoorHeight();
+    void setDoorHeight(float height);
 
     float getDoorLeakage();
     void setDoorLeakage(float leakage);
@@ -32,8 +32,7 @@ protected:
     QColor m_DoorColor;
     QPoint m_Doorstart;
     QPoint m_DoorEnd;
-    int m_DoorThickness;
-    int m_DoorHeight;
+    float m_DoorHeight;
     float m_DoorLeakage;
 
     QLine m_Line;

@@ -15,7 +15,7 @@ protected:
     void mouseRelease(QMouseEvent *event) override;
 
 private:
-    Floor m_Floor;
+    Floor *m_Floor;
     bool m_ClickPressed;
     QPoint m_startPosition;
     DwellerCanvas *m_canvas;

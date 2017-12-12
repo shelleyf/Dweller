@@ -24,13 +24,12 @@ public:
     QPoint itemPos;
     QString noteText;
 
+    QPen m_pen;
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-
-private:
-    QPen m_pen;
 
 };
 

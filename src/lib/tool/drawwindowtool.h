@@ -14,9 +14,10 @@ protected:
     void mouseRelease(QMouseEvent *event) override;
 
 private:
-    Window m_Window;
+    Window *m_Window;
     bool m_ClickPressed;
-    QPoint m_startPosition;
+    QPoint m_StartPosition;
+    QPoint m_EndPosition;
     DwellerCanvas *m_canvas;
 };
 

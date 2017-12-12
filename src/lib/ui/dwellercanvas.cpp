@@ -85,7 +85,7 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
     if (event->button() == m_translateButton) {
         //qDebug("press1");
         QPointF point = mapToScene(event->pos());
-        if (scene()->itemAt(point, transform()) == NULL)  {
+        if (scene->itemAt(point, transform()) == NULL)  {
             //qDebug("press2");
             m_bMouseTranslate = true;
             m_lastMousePos = event->pos();

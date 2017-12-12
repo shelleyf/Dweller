@@ -3,6 +3,7 @@
 #include "lib/ui/dwellercanvas.h"
 #include "lib/draw/device.h"
 #include "tool.h"
+#include <QtGlobal>
 
 class DrawDeviceTool : public Tool
 {
@@ -15,9 +16,10 @@ protected:
     void mouseRelease(QMouseEvent *event) override;
 
 private:
-    Device m_Device;
+    Device *m_Device;
     bool m_ClickPressed;
-    QPoint m_startPosition;
+    QPoint m_StartPosition;
+    QPoint m_EndPosition;
     DwellerCanvas *m_canvas;
 };
 
