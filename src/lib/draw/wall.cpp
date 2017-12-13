@@ -2,7 +2,7 @@
 
 Wall::Wall()
 {
-
+    setPen(QColor(255,0,0),2);
 }
 
 QPen Wall::getPen(){
@@ -14,12 +14,22 @@ void Wall::setPen(QColor color, int width){
     m_pen.setWidth(width);
 }
 
-void Wall::draw(QPainter *painter){
-    //painter->setPen(m_pen);
-    //painter->drawLine(m_WallStart,m_WallEnd);
+void Wall::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}
+
+QRectF Wall::boundingRect() const{
+
 }
 
 QRect Wall::getBoundary(){
+
+}
+void Wall::setSelected(bool val){
+
+}
+
+bool Wall::isSelected(){
 
 }
 

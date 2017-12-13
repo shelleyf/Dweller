@@ -9,7 +9,11 @@ Device::Device()
 
 }
 
-void Device::draw(QPainter *painter){
+void Device::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}
+
+QRectF Device::boundingRect() const{
 
 }
 
@@ -18,6 +22,14 @@ QRect Device::getBoundary(){
 }
 
 bool Device::contains(int x, int y){
+
+}
+
+void Device::setSelected(bool val){
+
+}
+
+bool Device::isSelected(){
 
 }
 

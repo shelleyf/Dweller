@@ -5,7 +5,11 @@ Floor::Floor()
     setPen(QColor(0,255,255),1);
 }
 
-void Floor::draw(QPainter *painter){
+void Floor::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}
+
+QRectF Floor::boundingRect() const{
 
 }
 
@@ -14,6 +18,14 @@ QRect Floor::getBoundary(){
 }
 
 bool Floor::contains(int x, int y){
+
+}
+
+void Floor::setSelected(bool val){
+
+}
+
+bool Floor::isSelected(){
 
 }
 

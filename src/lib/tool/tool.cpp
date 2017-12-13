@@ -4,3 +4,12 @@ Tool::Tool()
 {
 
 }
+
+Tool::~Tool()
+{
+
+}
+
+bool Tool::handleEvent(QEvent *event){
+
+}

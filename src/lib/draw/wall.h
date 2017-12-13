@@ -9,12 +9,15 @@ class Wall : public HouseItem
 {
 public:
     Wall();
-    ~Wall();
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;
 
-    void draw(QPainter *painter) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QRectF boundingRect() const override;
+
+    void setSelected(bool val) override;
+    bool isSelected() override;
 
     QRect getBoundary() override;
     bool contains(int x, int y) override;
@@ -25,12 +28,13 @@ public:
     QPoint getEndPoint();
     void setEndPoint(QPoint value);
 
+    QLine *m_Line;
 protected:
     QColor m_WallColor;
     QPoint m_WallStart;
     QPoint m_WallEnd;
     int m_WallThickness;
-    QLine m_Line;
+
 
 };
 

@@ -10,7 +10,9 @@ public:
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;
-    void draw(QPainter *painter) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QRectF boundingRect() const override;
+
     void setSelected(bool val) override;
     bool isSelected() override;
 
@@ -35,15 +37,14 @@ public:
     QString getDeviceName();
     void setDeviceName(QString string);
 
+    QRectF *m_Rect;
+
 protected:
     QPoint m_DevicePositionTL;
     QPoint m_DevicePositionBR;
     int m_DeviceWidth;
     int m_DeviceHeight;
-
     QString m_DeviceName;
-
-    QRectF m_Rect;
     QBrush m_Brush;
 
 };

@@ -12,25 +12,26 @@ class HouseItem : public QGraphicsItem
 {
 public:
     HouseItem();
-    virtual void draw(QPainter *painter) = 0;
-    virtual QRect getBoundary() = 0;
-    virtual void setSelected(bool val) = 0;
-    virtual bool isSelected() = 0;
-    virtual bool contains(int x, int y) = 0;
+    virtual ~HouseItem();
+
+    virtual QRect getBoundary();
+    virtual void setSelected(bool val);
+    virtual bool isSelected();
+    virtual bool contains(int x, int y);
 
     virtual void setPen(QColor color,int width);
-    virtual QPen getPen() = 0;
+    virtual QPen getPen();
 
     QPoint itemPos;
     QString noteText;
 
     QPen m_pen;
 
-protected:
+/*protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-
+*/
 };
 
 #endif // HOUSEITEM_H

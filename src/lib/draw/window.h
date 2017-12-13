@@ -9,10 +9,13 @@ public:
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;
-    void draw(QPainter *painter) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QRectF boundingRect() const override;
 
     QRect getBoundary() override;
     bool contains(int x, int y) override;
+    void setSelected(bool val) override;
+    bool isSelected() override;
 
     QPoint getWindowPosition(int position);
     void setWindowPosition(QPoint point,int position);
@@ -23,6 +26,13 @@ public:
     float getWindowLeakage();
     void setWindowLeakage(float leakage);
 
+    QPoint getStartPoint();
+    void setStartPoint(QPoint value);
+
+    QPoint getEndPoint();
+    void setEndPoint(QPoint value);
+
+    QLine *m_Line;
 protected:
     QColor m_WindowColor;
     QPoint m_WindowTL;
@@ -33,7 +43,10 @@ protected:
     float m_WindowHeight;
     float m_WindowLeakage;
 
-    QLine m_Line;
+    QPoint m_WindowStart;
+    QPoint m_WindowEnd;
+
+
 
 };
 

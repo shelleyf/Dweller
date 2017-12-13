@@ -10,10 +10,13 @@ public:
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;
-    void draw(QPainter *painter) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QRectF boundingRect() const override;
 
     QRect getBoundary() override;
     bool contains(int x, int y) override;
+    void setSelected(bool val) override;
+    bool isSelected() override;
 
     QPoint getStartPoint();
     void setStartPoint(QPoint value);
@@ -27,15 +30,15 @@ public:
     float getDoorLeakage();
     void setDoorLeakage(float leakage);
 
-
+    QLine *m_Line;
 protected:
     QColor m_DoorColor;
-    QPoint m_Doorstart;
+    QPoint m_DoorStart;
     QPoint m_DoorEnd;
     float m_DoorHeight;
     float m_DoorLeakage;
 
-    QLine m_Line;
+
 
 
 };

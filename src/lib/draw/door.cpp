@@ -7,14 +7,24 @@ Door::Door()
     setDoorLeakage(0.2);
 }
 
-void Door::draw(QPainter *painter){
+void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}
+
+QRectF Door::boundingRect() const{
 
 }
 
 QRect Door::getBoundary(){
 
 }
+void Door::setSelected(bool val){
 
+}
+
+bool Door::isSelected(){
+
+}
 bool Door::contains(int x, int y){
 
 }
@@ -42,4 +52,20 @@ void Door::setDoorLeakage(float leakage){
 
 float Door::getDoorLeakage(){
     return m_DoorLeakage;
+}
+
+QPoint Door::getStartPoint(){
+    return m_DoorStart;
+}
+
+void Door::setStartPoint(QPoint point){
+    m_DoorStart = point;
+}
+
+QPoint Door::getEndPoint(){
+    return m_DoorEnd;
+}
+
+void Door::setEndPoint(QPoint point){
+    m_DoorEnd = point;
 }

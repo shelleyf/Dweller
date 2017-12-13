@@ -8,14 +8,15 @@ class Tool
 {
 public:
     Tool();
+    virtual ~Tool();
 
     bool handleEvent(QEvent *event);
 
 protected:
-    virtual void mousePress(QMouseEvent* event) = 0;
-    virtual void mouseMove(QMouseEvent* event) = 0;
-    virtual void mouseRelease(QMouseEvent* event) = 0;
-    virtual void keyPress(QKeyEvent* event) = 0;
+    virtual void mousePress(QMouseEvent* event) {}
+    virtual void mouseMove(QMouseEvent* event) {}
+    virtual void mouseRelease(QMouseEvent* event) {}
+    //virtual void keyPress(QKeyEvent* event){}
 
 };
 

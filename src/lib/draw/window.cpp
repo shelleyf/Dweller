@@ -7,6 +7,14 @@ Window::Window()
     setWindowHeight(1.5);
 }
 
+void Window::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}
+
+QRectF Window::boundingRect() const{
+
+}
+
 QPen Window::getPen(){
     return m_pen;
 }
@@ -21,6 +29,14 @@ QRect Window::getBoundary(){
 }
 
 bool Window::contains(int x, int y){
+
+}
+
+void Window::setSelected(bool val){
+
+}
+
+bool Window::isSelected(){
 
 }
 
@@ -65,5 +81,21 @@ void Window::setWindowPosition(QPoint point,int position){
         case 4:
             m_WindowBR = point;
     }
+}
+
+QPoint Window::getStartPoint(){
+    return m_WindowStart;
+}
+
+void Window::setStartPoint(QPoint point){
+    m_WindowStart = point;
+}
+
+QPoint Window::getEndPoint(){
+    return m_WindowEnd;
+}
+
+void Window::setEndPoint(QPoint point){
+    m_WindowEnd = point;
 }
 
