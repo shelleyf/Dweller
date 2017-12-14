@@ -23,5 +23,6 @@ void DrawDoorTool::mouseMove(QMouseEvent *event){
 void DrawDoorTool::mouseRelease(QMouseEvent *event){
     m_ClickPressed = false;
     m_Door->m_Line = new QLine(m_StartPosition,m_EndPosition);
-    m_canvas->scene->addLine(*(m_Door->m_Line),m_Door->getPen());
+    //m_canvas->scene->addLine(*(m_Door->m_Line),m_Door->getPen());
+    m_canvas->scene->addItem(m_Door);
 }

@@ -10,11 +10,21 @@ Device::Device()
 }
 
 void Device::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    painter->setPen(m_pen);
+    painter->setBrush(m_Brush);
+
+    painter->drawRect(*(m_Rect));
 
 }
 
-QRectF Device::boundingRect() const{
+QPainterPath Device::shape() const{
+    QPainterPath path;
+    path.addRect(*(m_Rect));
+    return path;
+}
 
+QRectF Device::boundingRect() const{
+    return m_Rect->adjusted(-margin,-margin,margin,margin);
 }
 
 QRect Device::getBoundary(){

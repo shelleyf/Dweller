@@ -22,10 +22,13 @@ public:
     virtual void setPen(QColor color,int width);
     virtual QPen getPen();
 
+    const int margin = 1;
+
     QPoint itemPos;
     QString noteText;
 
     QPen m_pen;
+
 
 /*protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

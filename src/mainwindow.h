@@ -23,8 +23,15 @@
 #include <QStatusBar>
 #include <QLabel>
 #include <QTextStream>
+#include <memory>
+#include <QDebug>
 
 #include "lib\ui\dwellercanvas.h"
+#include "lib\tool\drawdoortool.h"
+#include "lib\tool\drawfloortool.h"
+#include "lib\tool\drawwalltool.h"
+#include "lib\tool\drawdevicetool.h"
+#include "lib\tool\drawwindowtool.h"
 
 class MainWindow : public QMainWindow
 {
@@ -109,6 +116,15 @@ private:
     QAction *drawDoorAction;
     QAction *drawFloorAction;
     QAction *drawDeviceAction;
+
+    //tools
+    std::unique_ptr<DrawDeviceTool> m_DeviceTool;
+    std::unique_ptr<DrawDoorTool> m_DoorTool;
+    std::unique_ptr<DrawFloorTool> m_FloorTool;
+    std::unique_ptr<DrawWallTool> m_WallTool;
+    std::unique_ptr<DrawWindowTool> m_WindowTool;
+
+
 
 };
 

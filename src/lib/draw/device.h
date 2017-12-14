@@ -12,6 +12,7 @@ public:
     void setPen(QColor color,int width) override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
+    QPainterPath shape() const override;
 
     void setSelected(bool val) override;
     bool isSelected() override;

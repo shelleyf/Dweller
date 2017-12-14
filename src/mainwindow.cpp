@@ -6,6 +6,12 @@ MainWindow::MainWindow()
     canvas = new DwellerCanvas;
     setCentralWidget(canvas);
 
+    m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas));
+    m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas));
+    m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas));
+    m_WallTool = std::unique_ptr<DrawWallTool>(new DrawWallTool(canvas));
+    m_WindowTool = std::unique_ptr<DrawWindowTool>(new DrawWindowTool(canvas));
+
     createActions();
     createMenuBar();
     createSettingBar();
@@ -68,7 +74,8 @@ void MainWindow::on_actionAbout(){
 }
 
 void MainWindow::on_actionDrawWall(){
-
+    qDebug("action draw wall");
+    m_WallTool.get();
 }
 
 void MainWindow::on_actionDrawWindow(){

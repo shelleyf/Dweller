@@ -10,7 +10,7 @@ DwellerCanvas::DwellerCanvas(QWidget *parent)
     scene->setSceneRect(-100,-100,900,900);
     setScene(scene);
     setCacheMode(QGraphicsView::CacheNone);
-    setDragMode(QGraphicsView::ScrollHandDrag);
+    //setDragMode(QGraphicsView::ScrollHandDrag);
     setViewportUpdateMode(BoundingRectViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -71,7 +71,6 @@ void DwellerCanvas::drawBackground(QPainter *painter, const QRectF &rect){
 }
 
 void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
-    //qDebug("move0");
     if(m_bMouseTranslate){
         QPointF mouseDelta = mapToScene(event->pos())-mapToScene(m_lastMousePos);
         translate(mouseDelta);
@@ -81,7 +80,7 @@ void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
 }
 
 void DwellerCanvas::mousePressEvent(QMouseEvent *event){
-    //qDebug("press0");
+
     if (event->button() == m_translateButton) {
         //qDebug("press1");
         QPointF point = mapToScene(event->pos());
@@ -89,6 +88,7 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
             //qDebug("press2");
             m_bMouseTranslate = true;
             m_lastMousePos = event->pos();
+            setDragMode(QGraphicsView::ScrollHandDrag);
         }
     }
 
@@ -96,9 +96,10 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
 }
 
 void DwellerCanvas::mouseReleaseEvent(QMouseEvent *event){
-    //qDebug("release0");
-    if (event->button() == m_translateButton)
+    if (event->button() == m_translateButton){
         m_bMouseTranslate = false;
+        setDragMode(QGraphicsView::RubberBandDrag);
+    }
 
     QGraphicsView::mouseReleaseEvent(event);
 }

@@ -23,5 +23,6 @@ void DrawWindowTool::mouseMove(QMouseEvent *event){
 void DrawWindowTool::mouseRelease(QMouseEvent *event){
     m_ClickPressed = false;
     m_Window->m_Line = new QLine(m_StartPosition,m_EndPosition);
-    m_canvas->scene->addLine(*(m_Window->m_Line),m_Window->getPen());
+    //m_canvas->scene->addLine(*(m_Window->m_Line),m_Window->getPen());
+    m_canvas->scene->addItem(m_Window);
 }

@@ -23,5 +23,6 @@ void DrawWallTool::mouseMove(QMouseEvent *event){
 void DrawWallTool::mouseRelease(QMouseEvent *event){
     m_ClickPressed = false;
     m_Wall->m_Line = new QLine(m_StartPosition,m_EndPosition);
-    m_canvas->scene->addLine(*(m_Wall->m_Line),m_Wall->getPen());
+    //m_canvas->scene->addLine(*(m_Wall->m_Line),m_Wall->getPen());
+    m_canvas->scene->addItem(m_Wall);
 }
