@@ -15,11 +15,15 @@ void Wall::setPen(QColor color, int width){
 }
 
 void Wall::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
+    painter->setPen(m_pen);
+    painter->drawLine(*(m_Line));
 }
 
 QRectF Wall::boundingRect() const{
-
+    QPoint p1 = m_Line->p1() - QPoint(1,1);
+    QPoint p2 = m_Line->p2() + QPoint(1,1);
+    QRectF *res = new QRectF(p1,p2);
+    return *res;
 }
 
 QRect Wall::getBoundary(){

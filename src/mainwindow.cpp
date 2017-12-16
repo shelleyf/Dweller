@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "simulatewindow.h"
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
-    canvas = new DwellerCanvas;
+    canvas = new DwellerCanvas(this);
     setCentralWidget(canvas);
 
     m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas));
@@ -17,6 +17,10 @@ MainWindow::MainWindow()
     createSettingBar();
     createStatusBar();
     createToolBar();
+
+//    Wall *m_wall = new Wall();
+//    m_wall->m_Line = new QLine(QPoint(0,0),QPoint(100,100));
+//    canvas->scene->addItem(m_wall);
 
 }
 
@@ -75,7 +79,8 @@ void MainWindow::on_actionAbout(){
 
 void MainWindow::on_actionDrawWall(){
     qDebug("action draw wall");
-    m_WallTool.get();
+    //m_WallTool.get();
+    canvas->m_ActiveTool = m_WallTool.get();
 }
 
 void MainWindow::on_actionDrawWindow(){

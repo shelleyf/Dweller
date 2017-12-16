@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-     MainWindow();
+     MainWindow(QWidget *parent=0);
 
 protected:
     //void closeEvent(QCloseEvent *event);

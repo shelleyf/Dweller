@@ -7,6 +7,8 @@
 #include <QPen>
 #include <QDebug>
 
+#include "lib/tool/tool.h"
+
 #define CANVAS_RATIO 10
 #define VIEW_CENTER viewport()->rect().center()
 #define VIEW_WIDTH  viewport()->rect().width()
@@ -28,6 +30,7 @@ public:
     qreal zoomDelta() const;
 
     QGraphicsScene *scene;
+    Tool *m_ActiveTool;
 
 public slots:
     void translate(QPointF delta);
@@ -40,6 +43,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
+    bool event(QEvent *event) override;
 
     void scaleView(qreal scaleFactor);
 private:
@@ -50,6 +54,7 @@ private:
     bool m_bMouseTranslate;
     qreal m_scale;
     qreal m_zoomDelta;
+
 
     //Node *centerNode;
 };

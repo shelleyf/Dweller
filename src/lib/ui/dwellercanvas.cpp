@@ -5,7 +5,7 @@ DwellerCanvas::DwellerCanvas(QWidget *parent)
       m_scale(1.0),
       m_bMouseTranslate(false)
 {
-    scene = new QGraphicsScene(this);
+    scene = new QGraphicsScene;
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
     scene->setSceneRect(-100,-100,900,900);
     setScene(scene);
@@ -23,6 +23,10 @@ DwellerCanvas::DwellerCanvas(QWidget *parent)
     pix.load(":/res/house/house1.jpg");
     scene->addPixmap(pix);
 
+}
+
+bool DwellerCanvas::event(QEvent *event){
+    m_ActiveTool->handleEvent(event);
 }
 
 
