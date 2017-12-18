@@ -94,16 +94,20 @@ void MainWindow::on_actionDrawWall(){
 }
 
 void MainWindow::on_actionDrawWindow(){
-
+    qDebug("action draw wall");
+    canvas->m_ActiveTool = m_WindowTool.get();
 }
 void MainWindow::on_actionDrawDoor(){
-
+    qDebug("action draw wall");
+    canvas->m_ActiveTool = m_DoorTool.get();
 }
 void MainWindow::on_actionDrawFloor(){
-
+    qDebug("action draw wall");
+    canvas->m_ActiveTool = m_FloorTool.get();
 }
 void MainWindow::on_actionDrawDevice(){
-
+    qDebug("action draw wall");
+    canvas->m_ActiveTool = m_DeviceTool.get();
 }
 
 void MainWindow::on_actionShowSetting(){

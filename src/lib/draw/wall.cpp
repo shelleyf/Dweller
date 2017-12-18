@@ -23,12 +23,14 @@ QRectF Wall::boundingRect() const{
     QPoint p1 = m_Line->p1() - QPoint(1,1);
     QPoint p2 = m_Line->p2() + QPoint(1,1);
     QRectF *res = new QRectF(p1,p2);
+
     return *res;
 }
 
 QRect Wall::getBoundary(){
 
 }
+
 void Wall::setSelected(bool val){
 
 }
@@ -55,4 +57,8 @@ QPoint Wall::getEndPoint(){
 
 void Wall::setEndPoint(QPoint point){
     m_WallEnd = point;
+    QPoint p1 = m_WallStart - QPoint(1,1);
+    QPoint p2 = m_WallEnd + QPoint(1,1);
+    QRectF *res = new QRectF(p1,p2);
+    m_Rect = res;
 }

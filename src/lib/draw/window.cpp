@@ -8,11 +8,15 @@ Window::Window()
 }
 
 void Window::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
+    painter->setPen(m_pen);
+    painter->drawLine(*(m_Line));
 }
 
 QRectF Window::boundingRect() const{
-
+    QPoint p1 = m_Line->p1() - QPoint(1,1);
+    QPoint p2 = m_Line->p2() + QPoint(1,1);
+    QRectF *res = new QRectF(p1,p2);
+    return *res;
 }
 
 QPen Window::getPen(){
@@ -97,5 +101,9 @@ QPoint Window::getEndPoint(){
 
 void Window::setEndPoint(QPoint point){
     m_WindowEnd = point;
+    QPoint p1 = m_WindowStart - QPoint(1,1);
+    QPoint p2 = m_WindowEnd + QPoint(1,1);
+    QRectF *res = new QRectF(p1,p2);
+    m_Rect = res;
 }
 

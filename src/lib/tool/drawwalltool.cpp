@@ -13,18 +13,24 @@ void DrawWallTool::mousePress(QMouseEvent *event){
 
     m_Wall = new Wall();
     m_Wall->setStartPoint(m_StartPosition);
+
+    m_Wall->setEndPoint(m_StartPosition);
+    m_Wall->m_Line = new QLine(m_StartPosition,m_EndPosition);
+    m_canvas->scene->addItem(m_Wall);
 }
 
 void DrawWallTool::mouseMove(QMouseEvent *event){
     if(m_ClickPressed){
         m_Wall->setEndPoint(event->pos());
         m_EndPosition = event->pos();
+        m_Wall->m_Line->setP2(m_EndPosition);
+        m_Wall->update();
     }
 }
 
 void DrawWallTool::mouseRelease(QMouseEvent *event){
     m_ClickPressed = false;
-    m_Wall->m_Line = new QLine(m_StartPosition,m_EndPosition);
+    //m_Wall->m_Line = new QLine(m_StartPosition,m_EndPosition);
     //m_canvas->scene->addLine(*(m_Wall->m_Line),m_Wall->getPen());
-    m_canvas->scene->addItem(m_Wall);
+    //m_canvas->scene->addItem(m_Wall);
 }

@@ -29,6 +29,7 @@ public:
     void setEndPoint(QPoint value);
 
     QLine *m_Line;
+    QRectF *m_Rect;
 protected:
     QColor m_WallColor;
     QPoint m_WallStart;

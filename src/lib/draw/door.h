@@ -31,6 +31,8 @@ public:
     void setDoorLeakage(float leakage);
 
     QLine *m_Line;
+    QRectF *m_Rect;
+
 protected:
     QColor m_DoorColor;
     QPoint m_DoorStart;

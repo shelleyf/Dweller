@@ -11,7 +11,7 @@ DwellerCanvas::DwellerCanvas(QGraphicsScene *m_scene)
     setCacheMode(QGraphicsView::CacheNone);
 
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-    //setDragMode(QGraphicsView::ScrollHandDrag);
+    setDragMode(QGraphicsView::NoDrag);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setRenderHint(QPainter::Antialiasing);
@@ -84,7 +84,7 @@ void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
 
 void DwellerCanvas::mousePressEvent(QMouseEvent *event){
 
-    if (event->button() == m_translateButton) {
+    if ((event->button() == m_translateButton) && (m_ActiveTool->m_EnableViewChange)) {
         //qDebug("press1");
         QPointF point = mapToScene(event->pos());
         if (scene->itemAt(point, transform()) == NULL)  {
@@ -93,6 +93,8 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
             m_lastMousePos = event->pos();
             if(m_ActiveTool->m_EnableViewChange){
                 setDragMode(QGraphicsView::ScrollHandDrag);
+            }else{
+                setDragMode(QGraphicsView::NoDrag);
             }
         }
     }
@@ -104,8 +106,11 @@ void DwellerCanvas::mouseReleaseEvent(QMouseEvent *event){
 
     if (event->button() == m_translateButton){
         m_bMouseTranslate = false;
-        setDragMode(QGraphicsView::RubberBandDrag);
+//        if(!(m_ActiveTool->m_EnableViewChange)){
+        setDragMode(QGraphicsView::NoDrag);
+
     }
+
     m_ActiveTool->handleEvent(event);
     QGraphicsView::mouseReleaseEvent(event);
 }
