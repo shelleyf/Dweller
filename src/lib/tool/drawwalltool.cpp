@@ -6,6 +6,7 @@ DrawWallTool::DrawWallTool(DwellerCanvas *canvas)
 }
 
 void DrawWallTool::mousePress(QMouseEvent *event){
+    qDebug("wall tool mousePress");
     m_ClickPressed = true;
     m_StartPosition = event->pos();
 

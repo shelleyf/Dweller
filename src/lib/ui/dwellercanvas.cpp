@@ -1,47 +1,46 @@
 #include "lib\ui\dwellercanvas.h"
 
-DwellerCanvas::DwellerCanvas(QWidget *parent)
-    : QGraphicsView(parent),timerId(0),m_translateButton(Qt::LeftButton),
-      m_scale(1.0),
-      m_bMouseTranslate(false)
+DwellerCanvas::DwellerCanvas(QGraphicsScene *m_scene)
 {
-    scene = new QGraphicsScene;
-    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene->setSceneRect(-100,-100,900,900);
+    scene = m_scene;
+//    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+//    scene->setSceneRect(-100,-100,1000,1000);
+//    setSceneRect(0,0,1000,1000);
     setScene(scene);
-    setCacheMode(QGraphicsView::CacheNone);
-    //setDragMode(QGraphicsView::ScrollHandDrag);
-    setViewportUpdateMode(BoundingRectViewportUpdate);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setRenderHint(QPainter::Antialiasing);
-    setTransformationAnchor(AnchorUnderMouse);
-    scale(qreal(1), qreal(1));
-    setMinimumSize(400, 400);
+//    setCacheMode(QGraphicsView::CacheNone);
 
-    QPixmap pix;
-    pix.load(":/res/house/house1.jpg");
-    scene->addPixmap(pix);
+//    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+//    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    setRenderHint(QPainter::Antialiasing);
+//    setTransformationAnchor(AnchorUnderMouse);
+//    scale(qreal(1), qreal(1));
+//    setMinimumSize(400, 400);
 
-}
-
-bool DwellerCanvas::event(QEvent *event){
-    m_ActiveTool->handleEvent(event);
-}
-
-
-void DwellerCanvas::itemMoved(){
-    if(!timerId)
-        timerId=startTimer(1000/25);
-}
-
-void DwellerCanvas::timerEvent(QTimerEvent *event)
-{
-    Q_UNUSED(event);
+//    QPixmap pix;
+//    pix.load(":/res/house/house1.jpg");
+//    scene->addPixmap(pix);
 
 }
+
+//bool DwellerCanvas::event(QEvent *event){
+//    m_ActiveTool->handleEvent(event);
+//}
+
+
+//void DwellerCanvas::itemMoved(){
+////    if(!timerId)
+////        timerId=startTimer(1000/25);
+//}
+
+//void DwellerCanvas::timerEvent(QTimerEvent *event)
+//{
+////    Q_UNUSED(event);
+
+//}
 
 void DwellerCanvas::keyPressEvent(QKeyEvent *event){
+    m_ActiveTool->handleEvent(event);
     QGraphicsView::keyPressEvent(event);
 }
 
@@ -75,6 +74,7 @@ void DwellerCanvas::drawBackground(QPainter *painter, const QRectF &rect){
 }
 
 void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
+    m_ActiveTool->handleEvent(event);
     if(m_bMouseTranslate){
         QPointF mouseDelta = mapToScene(event->pos())-mapToScene(m_lastMousePos);
         translate(mouseDelta);
@@ -84,7 +84,7 @@ void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
 }
 
 void DwellerCanvas::mousePressEvent(QMouseEvent *event){
-
+    m_ActiveTool->handleEvent(event);
     if (event->button() == m_translateButton) {
         //qDebug("press1");
         QPointF point = mapToScene(event->pos());
@@ -100,6 +100,7 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
 }
 
 void DwellerCanvas::mouseReleaseEvent(QMouseEvent *event){
+    m_ActiveTool->handleEvent(event);
     if (event->button() == m_translateButton){
         m_bMouseTranslate = false;
         setDragMode(QGraphicsView::RubberBandDrag);
@@ -124,7 +125,7 @@ void DwellerCanvas::translate(QPointF delta){
 
 void DwellerCanvas::setTranslateSpeed(qreal speed)
 {
-    // 建议速度范围
+     //建议速度范围
     Q_ASSERT_X(speed >= 0.0 && speed <= 2.0,
                "InteractiveView::setTranslateSpeed", "Speed should be in range [0.0, 2.0].");
     m_translateSpeed = speed;
