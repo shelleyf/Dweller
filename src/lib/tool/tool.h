@@ -12,6 +12,7 @@ public:
 
     bool handleEvent(QEvent *event);
 
+    bool m_EnableViewChange;
 protected:
     virtual void mousePress(QMouseEvent* event) {}
     virtual void mouseMove(QMouseEvent* event) {}

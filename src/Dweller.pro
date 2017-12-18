@@ -28,7 +28,8 @@ SOURCES += \
     lib/tool/drawdoortool.cpp \
     lib/tool/drawwindowtool.cpp \
     lib/tool/drawfloortool.cpp \
-    lib/tool/drawwalltool.cpp
+    lib/tool/drawwalltool.cpp \
+    lib/tool/selectiontool.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     lib/tool/drawdoortool.h \
     lib/tool/drawwindowtool.h \
     lib/tool/drawfloortool.h \
-    lib/tool/drawwalltool.h
+    lib/tool/drawwalltool.h \
+    lib/tool/selectiontool.h
 
 SUBDIRS += \
     Dweller.pro

@@ -3,6 +3,7 @@
 DrawDoorTool::DrawDoorTool(DwellerCanvas *canvas)
 {
     m_canvas = canvas;
+    m_EnableViewChange = false;
 }
 
 void DrawDoorTool::mousePress(QMouseEvent *event){

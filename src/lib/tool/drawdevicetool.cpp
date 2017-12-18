@@ -3,6 +3,7 @@
 DrawDeviceTool::DrawDeviceTool(DwellerCanvas *canvas)
 {
     m_canvas = canvas;
+    m_EnableViewChange = false;
 }
 
 void DrawDeviceTool::mousePress(QMouseEvent *event){

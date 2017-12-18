@@ -3,6 +3,7 @@
 DrawWindowTool::DrawWindowTool(DwellerCanvas *canvas)
 {
     m_canvas = canvas;
+    m_EnableViewChange = false;
 }
 
 void DrawWindowTool::mousePress(QMouseEvent *event){

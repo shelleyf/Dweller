@@ -3,6 +3,7 @@
 DrawWallTool::DrawWallTool(DwellerCanvas *canvas)
 {
     m_canvas = canvas;
+    m_EnableViewChange = false;
 }
 
 void DrawWallTool::mousePress(QMouseEvent *event){

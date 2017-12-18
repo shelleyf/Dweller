@@ -3,6 +3,7 @@
 DrawFloorTool::DrawFloorTool(DwellerCanvas *canvas)
 {
     m_canvas = canvas;
+    m_EnableViewChange = false;
 }
 
 void DrawFloorTool::mousePress(QMouseEvent *event){

@@ -4,6 +4,7 @@
 MainWindow::MainWindow()
 {
     QGraphicsScene *scene = new QGraphicsScene;
+    scene->setSceneRect(-100,-100,1000,1000);
     QPixmap pix;
     pix.load(":/res/house/house1.jpg");
     scene->addPixmap(pix);
@@ -11,6 +12,7 @@ MainWindow::MainWindow()
     canvas = new DwellerCanvas(scene);
     setCentralWidget(canvas);
 
+    m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas));
     m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas));
     m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas));
     m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas));
@@ -23,7 +25,8 @@ MainWindow::MainWindow()
     createStatusBar();
     createToolBar();
 
-    canvas->m_ActiveTool = m_WallTool.get();
+    canvas->m_ActiveTool = m_SelectionTool.get();
+    //canvas->m_ActiveTool = m_WallTool.get();
 
 //    Wall *m_wall = new Wall();
 //    m_wall->m_Line = new QLine(QPoint(0,0),QPoint(100,100));
@@ -77,7 +80,8 @@ void MainWindow::on_actionSimulate(){
 }
 
 void MainWindow::on_actionSelect(){
-
+    qDebug("action select");
+    canvas->m_ActiveTool = m_SelectionTool.get();
 }
 
 void MainWindow::on_actionAbout(){

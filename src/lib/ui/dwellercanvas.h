@@ -10,8 +10,6 @@
 #include "lib/tool/tool.h"
 
 #define CANVAS_RATIO 10
-#define VIEW_WIDTH 800
-#define VIEW_HEIGHT 600
 
 class DwellerCanvas : public QGraphicsView
 {

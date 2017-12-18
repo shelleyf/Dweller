@@ -32,6 +32,7 @@
 #include "lib\tool\drawwalltool.h"
 #include "lib\tool\drawdevicetool.h"
 #include "lib\tool\drawwindowtool.h"
+#include "lib\tool\selectiontool.h"
 
 class MainWindow : public QMainWindow
 {
@@ -123,7 +124,7 @@ private:
     std::unique_ptr<DrawFloorTool> m_FloorTool;
     std::unique_ptr<DrawWallTool> m_WallTool;
     std::unique_ptr<DrawWindowTool> m_WindowTool;
-
+    std::unique_ptr<SelectionTool> m_SelectionTool;
 
 
 };

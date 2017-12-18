@@ -3,23 +3,21 @@
 DwellerCanvas::DwellerCanvas(QGraphicsScene *m_scene)
 {
     scene = m_scene;
+    m_translateButton = Qt::LeftButton;
 //    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 //    scene->setSceneRect(-100,-100,1000,1000);
 //    setSceneRect(0,0,1000,1000);
     setScene(scene);
-//    setCacheMode(QGraphicsView::CacheNone);
+    setCacheMode(QGraphicsView::CacheNone);
 
-//    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-//    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//    setRenderHint(QPainter::Antialiasing);
-//    setTransformationAnchor(AnchorUnderMouse);
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+    //setDragMode(QGraphicsView::ScrollHandDrag);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setRenderHint(QPainter::Antialiasing);
+    setTransformationAnchor(AnchorUnderMouse);
 //    scale(qreal(1), qreal(1));
 //    setMinimumSize(400, 400);
-
-//    QPixmap pix;
-//    pix.load(":/res/house/house1.jpg");
-//    scene->addPixmap(pix);
 
 }
 
@@ -74,38 +72,41 @@ void DwellerCanvas::drawBackground(QPainter *painter, const QRectF &rect){
 }
 
 void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
-    m_ActiveTool->handleEvent(event);
+
     if(m_bMouseTranslate){
         QPointF mouseDelta = mapToScene(event->pos())-mapToScene(m_lastMousePos);
         translate(mouseDelta);
     }
     m_lastMousePos = event->pos();
+    m_ActiveTool->handleEvent(event);
     QGraphicsView::mouseMoveEvent(event);
 }
 
 void DwellerCanvas::mousePressEvent(QMouseEvent *event){
-    m_ActiveTool->handleEvent(event);
+
     if (event->button() == m_translateButton) {
         //qDebug("press1");
         QPointF point = mapToScene(event->pos());
         if (scene->itemAt(point, transform()) == NULL)  {
-            //qDebug("press2");
+            qDebug("press2");
             m_bMouseTranslate = true;
             m_lastMousePos = event->pos();
-            setDragMode(QGraphicsView::ScrollHandDrag);
+            if(m_ActiveTool->m_EnableViewChange){
+                setDragMode(QGraphicsView::ScrollHandDrag);
+            }
         }
     }
-
+    m_ActiveTool->handleEvent(event);
     QGraphicsView::mousePressEvent(event);
 }
 
 void DwellerCanvas::mouseReleaseEvent(QMouseEvent *event){
-    m_ActiveTool->handleEvent(event);
+
     if (event->button() == m_translateButton){
         m_bMouseTranslate = false;
         setDragMode(QGraphicsView::RubberBandDrag);
     }
-
+    m_ActiveTool->handleEvent(event);
     QGraphicsView::mouseReleaseEvent(event);
 }
 
@@ -116,7 +117,7 @@ void DwellerCanvas::translate(QPointF delta){
 
     // view 根据鼠标下的点作为锚点来定位 scene
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-    QPoint newCenter(VIEW_WIDTH / 2 - delta.x(),  VIEW_HEIGHT / 2 - delta.y());
+    QPoint newCenter(this->width() / 2 - delta.x(),  this->height() / 2 - delta.y());
     centerOn(mapToScene(newCenter));
 
     // scene 在 view 的中心点作为锚点

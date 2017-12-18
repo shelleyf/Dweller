@@ -2,7 +2,7 @@
 
 Tool::Tool()
 {
-
+    m_EnableViewChange = false;
 }
 
 Tool::~Tool()
