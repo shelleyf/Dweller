@@ -8,8 +8,12 @@ DrawWallTool::DrawWallTool(DwellerCanvas *canvas)
 
 void DrawWallTool::mousePress(QMouseEvent *event){
     qDebug("wall tool mousePress");
+    qDebug()<<event->pos();
+    qDebug()<<m_MapTranslate;
+
     m_ClickPressed = true;
-    m_StartPosition = event->pos();
+    //m_StartPosition = event->pos();
+    m_StartPosition = event->pos() - m_MapTranslate;
 
     m_Wall = new Wall();
     m_Wall->setStartPoint(m_StartPosition);
@@ -21,8 +25,10 @@ void DrawWallTool::mousePress(QMouseEvent *event){
 
 void DrawWallTool::mouseMove(QMouseEvent *event){
     if(m_ClickPressed){
-        m_Wall->setEndPoint(event->pos());
-        m_EndPosition = event->pos();
+        m_Wall->setEndPoint(event->pos() - m_MapTranslate);
+        //m_EndPosition = event->pos();
+        m_EndPosition = event->pos()-m_MapTranslate;
+
         m_Wall->m_Line->setP2(m_EndPosition);
         m_Wall->update();
     }

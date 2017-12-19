@@ -13,6 +13,7 @@ public:
     bool handleEvent(QEvent *event);
 
     bool m_EnableViewChange;
+    QPoint m_MapTranslate;
 protected:
     virtual void mousePress(QMouseEvent* event) {}
     virtual void mouseMove(QMouseEvent* event) {}

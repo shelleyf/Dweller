@@ -78,6 +78,7 @@ void DwellerCanvas::mouseMoveEvent(QMouseEvent *event){
         translate(mouseDelta);
     }
     m_lastMousePos = event->pos();
+    m_ActiveTool->m_MapTranslate = mapFromScene(QPoint(0,0));
     m_ActiveTool->handleEvent(event);
     QGraphicsView::mouseMoveEvent(event);
 }
@@ -98,6 +99,7 @@ void DwellerCanvas::mousePressEvent(QMouseEvent *event){
             }
         }
     }
+    m_ActiveTool->m_MapTranslate = mapFromScene(QPoint(0,0));
     m_ActiveTool->handleEvent(event);
     QGraphicsView::mousePressEvent(event);
 }
@@ -110,7 +112,7 @@ void DwellerCanvas::mouseReleaseEvent(QMouseEvent *event){
         setDragMode(QGraphicsView::NoDrag);
 
     }
-
+    m_ActiveTool->m_MapTranslate = mapFromScene(QPoint(0,0));
     m_ActiveTool->handleEvent(event);
     QGraphicsView::mouseReleaseEvent(event);
 }
