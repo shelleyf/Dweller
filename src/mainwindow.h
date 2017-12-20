@@ -33,6 +33,7 @@
 #include "lib\tool\drawdevicetool.h"
 #include "lib\tool\drawwindowtool.h"
 #include "lib\tool\selectiontool.h"
+#include "lib/data/globalcanvasdata.h"
 
 class MainWindow : public QMainWindow
 {
@@ -40,6 +41,12 @@ class MainWindow : public QMainWindow
 
 public:
      MainWindow();
+
+     bool isDirty() const;
+     void saveFile();
+     QString getCanvasFile() const;
+     void setCanvasFile(const QString &value);
+     QString getTitle() const;
 
 protected:
     //void closeEvent(QCloseEvent *event);
@@ -125,6 +132,14 @@ private:
     std::unique_ptr<DrawWallTool> m_WallTool;
     std::unique_ptr<DrawWindowTool> m_WindowTool;
     std::unique_ptr<SelectionTool> m_SelectionTool;
+
+    //data func save\load
+    GlobalCanvasData m_gcd;
+    QString m_canvasFile;
+    bool m_isFileSet;
+    QString m_appName;
+
+
 
 
 };

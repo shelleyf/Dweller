@@ -26,12 +26,32 @@ MainWindow::MainWindow()
     createToolBar();
 
     canvas->m_ActiveTool = m_SelectionTool.get();
-    //canvas->m_ActiveTool = m_WallTool.get();
 
 //    Wall *m_wall = new Wall();
 //    m_wall->m_Line = new QLine(QPoint(0,0),QPoint(100,100));
 //    canvas->scene->addItem(m_wall);
 
+}
+
+QString MainWindow::getCanvasFile() const{
+    return m_canvasFile;
+}
+
+void MainWindow::setCanvasFile(const QString &value){
+    m_canvasFile = value;
+    m_isFileSet = true;
+}
+
+bool MainWindow::isDirty() const{
+
+}
+
+void MainWindow::saveFile(){
+
+}
+
+QString MainWindow::getTitle()const{
+    return QString("%1 - %2").arg(m_appName,m_canvasFile);
 }
 
 void MainWindow::on_actionNewFile(){
