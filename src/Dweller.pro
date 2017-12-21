@@ -29,7 +29,11 @@ SOURCES += \
     lib/tool/drawwindowtool.cpp \
     lib/tool/drawfloortool.cpp \
     lib/tool/drawwalltool.cpp \
-    lib/tool/selectiontool.cpp
+    lib/tool/selectiontool.cpp \
+    lib/data/filereaderfactory.cpp \
+    lib/data/filewriterfactory.cpp \
+    lib/data/jsonfilereader.cpp \
+    lib/data/jsonfilewriter.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -49,7 +53,11 @@ HEADERS += \
     lib/tool/drawwindowtool.h \
     lib/tool/drawfloortool.h \
     lib/tool/drawwalltool.h \
-    lib/tool/selectiontool.h
+    lib/tool/selectiontool.h \
+    lib/data/filereaderfactory.h \
+    lib/data/filewriterfactory.h \
+    lib/data/jsonfilereader.h \
+    lib/data/jsonfilewriter.h
 
 SUBDIRS += \
     Dweller.pro
