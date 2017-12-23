@@ -63,11 +63,26 @@ void MainWindow::on_actionOpenFile(){
 }
 
 void MainWindow::on_actionSaveFile(){
-
+    if(!m_isFileSet){
+        on_actionSaveAs();
+        return;
+    }
+    if(isDirty()){
+        saveFile();
+    }
 }
 
 void MainWindow::on_actionSaveAs(){
+    QString fileName =
+            QFileDialog::getSaveFileName(this,
+                                         tr("Save File"),
+                                         QDir::currentPath(),
+                                         tr("Json (*.json)"));
 
+    if (fileName.isEmpty()) return;
+
+    setCanvasFile(fileName);
+    saveFile();
 }
 
 void MainWindow::on_actionExit(){

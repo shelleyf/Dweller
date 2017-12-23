@@ -10,6 +10,7 @@
 #include "lib/draw/wall.h"
 #include "lib/draw/floor.h"
 #include "lib/draw/window.h"
+#include "lib/data/globalcanvasdata.h"
 
 
 class JsonFileReader
@@ -25,8 +26,9 @@ private:
     Door *readDoor(const QJsonObject &door);
     Wall *readWall(const QJsonObject &wall);
     Floor *readFloor(const QJsonObject &floor);
+    Window *readWindow(const QJsonObject &window);
 
-
+    GlobalCanvasData m_Data;
 };
 
 #endif // JSONFILEREADER_H
