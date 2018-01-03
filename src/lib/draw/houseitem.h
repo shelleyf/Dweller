@@ -35,6 +35,9 @@ public:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 */
+private:
+    QString m_Name;
+    int index;
 };
 
 #endif // HOUSEITEM_H
