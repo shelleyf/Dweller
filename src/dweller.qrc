@@ -54,5 +54,6 @@
         <file>res/texture/texture_earth.jpg</file>
         <file>res/texture/texture_earth2.jpg</file>
         <file>res/texture/wood-2.jpg</file>
+        <file>res/texture/machine.jpg</file>
     </qresource>
 </RCC>

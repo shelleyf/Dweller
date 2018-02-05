@@ -3,7 +3,7 @@
 Device::Device()
 {
     QPixmap brushPix;
-    brushPix.load(":/res/texture/wood-2.jpg");
+    brushPix.load(":/res/texture/machine.jpg");
     m_Brush.setTexture(brushPix);
 
 
