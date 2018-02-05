@@ -8,7 +8,7 @@ class DrawWallTool : public Tool
 {
 public:
     DrawWallTool(DwellerCanvas *canvas);
-
+    ~DrawWallTool();
 protected:
     void mousePress(QMouseEvent *event) override;
     void mouseMove(QMouseEvent *event) override;

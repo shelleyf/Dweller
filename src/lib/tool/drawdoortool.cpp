@@ -6,6 +6,10 @@ DrawDoorTool::DrawDoorTool(DwellerCanvas *canvas)
     m_EnableViewChange = false;
 }
 
+DrawDoorTool::~DrawDoorTool(){
+
+}
+
 void DrawDoorTool::mousePress(QMouseEvent *event){
     qDebug("wall tool mousePress");
     m_ClickPressed = true;

@@ -6,6 +6,11 @@ SelectionTool::SelectionTool(DwellerCanvas *canvas)
     m_EnableViewChange = true;
 }
 
+SelectionTool::~SelectionTool()
+{
+
+}
+
 void SelectionTool::mousePress(QMouseEvent *event){
 
 }

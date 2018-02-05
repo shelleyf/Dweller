@@ -6,6 +6,10 @@ DrawWindowTool::DrawWindowTool(DwellerCanvas *canvas)
     m_EnableViewChange = false;
 }
 
+DrawWindowTool::~DrawWindowTool(){
+
+}
+
 void DrawWindowTool::mousePress(QMouseEvent *event){
     m_ClickPressed = true;
     m_StartPosition = event->pos() - m_MapTranslate;

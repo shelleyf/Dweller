@@ -6,6 +6,11 @@ DrawDeviceTool::DrawDeviceTool(DwellerCanvas *canvas)
     m_EnableViewChange = false;
 }
 
+DrawDeviceTool::~DrawDeviceTool(){
+
+}
+
+
 void DrawDeviceTool::mousePress(QMouseEvent *event){
     m_ClickPressed = true;
     m_StartPosition = event->pos();

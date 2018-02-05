@@ -16,7 +16,7 @@ class JsonFileWriter
 public:
     JsonFileWriter();
 
-    void setup(Group *mainGroup);
+    void setup(GlobalCanvasData *mainCanvas);
     bool write(const std::string &fileDir);
 
 private:

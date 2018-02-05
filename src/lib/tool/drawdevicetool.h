@@ -9,7 +9,7 @@ class DrawDeviceTool : public Tool
 {
 public:
     DrawDeviceTool(DwellerCanvas *canvas);
-
+    ~DrawDeviceTool();
 protected:
     void mousePress(QMouseEvent *event) override;
     void mouseMove(QMouseEvent *event) override;

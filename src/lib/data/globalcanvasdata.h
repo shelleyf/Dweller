@@ -12,7 +12,7 @@ public:
     HouseItem * find(QString string);
 
 private:
-    QList<HouseItem> m_Data;
+    QList<HouseItem *> m_Data;
 };
 
 #endif // GLOBALCANVASDATA_H
