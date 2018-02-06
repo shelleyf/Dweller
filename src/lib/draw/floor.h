@@ -35,9 +35,10 @@ public:
 
     QPointF regionTL;
     QPointF regionBR;
+    QRectF *regionRect;
 private:
     QBrush m_Brush;
-    QRectF *regionRect;
+
 };
 
 #endif // FLOOR_H

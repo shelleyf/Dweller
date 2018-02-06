@@ -6,6 +6,8 @@ Floor::Floor()
     QPixmap brushPix;
     brushPix.load(":/res/texture/wood-2.jpg");
     m_Brush.setTexture(brushPix);
+    regionRect = new QRectF(regionTL,regionBR);
+
 }
 
 Floor::~Floor(){
@@ -16,7 +18,9 @@ void Floor::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->setPen(m_pen);
     painter->setBrush(m_Brush);
     painter->drawPoints(*m_Polygon);
-    painter->drawPolygon(*(m_Polygon));
+    painter->drawPolygon(*m_Polygon);
+
+    qDebug("floor paint");
 }
 
 QPainterPath Floor::shape() const{
@@ -26,7 +30,10 @@ QPainterPath Floor::shape() const{
 }
 
 QRectF Floor::boundingRect() const{
-    regionRect = new QRectF(regionTL,regionBR);
+    regionRect->setTopLeft(regionTL);
+    regionRect->setBottomRight(regionBR);
+    //qDebug()<<(regionRect->x());
+    //qDebug()<<(regionRect->y());
     return regionRect->adjusted(-margin,-margin,margin,margin);
 }
 

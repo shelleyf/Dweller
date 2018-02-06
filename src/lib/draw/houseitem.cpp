@@ -4,6 +4,7 @@ HouseItem::HouseItem()
 {
     QPen *temp = new QPen();
     m_pen = *temp;
+    setCacheMode(QGraphicsItem::NoCache);
 }
 
 HouseItem::~HouseItem(){
