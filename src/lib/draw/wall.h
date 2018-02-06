@@ -9,6 +9,7 @@ class Wall : public HouseItem
 {
 public:
     Wall();
+    ~Wall();
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;

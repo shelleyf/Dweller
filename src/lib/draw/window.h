@@ -6,6 +6,7 @@ class Window : public HouseItem
 {
 public:
     Window();
+    ~Window();
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;

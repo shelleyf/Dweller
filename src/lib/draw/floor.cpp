@@ -2,15 +2,32 @@
 
 Floor::Floor()
 {
-    setPen(QColor(0,255,255),1);
+    setPen(QColor(0,255,255),5);
+    QPixmap brushPix;
+    brushPix.load(":/res/texture/wood-2.jpg");
+    m_Brush.setTexture(brushPix);
+}
+
+Floor::~Floor(){
+
 }
 
 void Floor::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    painter->setPen(m_pen);
+    painter->setBrush(m_Brush);
+    painter->drawPoints(*m_Polygon);
+    painter->drawPolygon(*(m_Polygon));
+}
 
+QPainterPath Floor::shape() const{
+    QPainterPath path;
+    path.addPolygon(*(m_Polygon));
+    return path;
 }
 
 QRectF Floor::boundingRect() const{
-
+    regionRect = new QRectF(regionTL,regionBR);
+    return regionRect->adjusted(-margin,-margin,margin,margin);
 }
 
 QRect Floor::getBoundary(){
@@ -38,15 +55,27 @@ void Floor::setPen(QColor color, int width){
     m_pen.setWidth(width);
 }
 
+void Floor::appendPoint(QPoint point){
+    m_Point.append(point);
+    //boundingRect();
+}
+
 void Floor::addPoint(QPoint point, int index){
-    if(floorPoint.isEmpty()){
-        floorPoint.append(point);
+    if(m_Point.isEmpty()){
+        m_Point.append(point);
     }
     else{
-        floorPoint.insert(index,point);
+        m_Point.insert(index,point);
     }
+}
+QBrush Floor::getBrush(){
+    return m_Brush;
+}
+
+void Floor::setBrush(){
+
 }
 
 void Floor::deletePoint(int index){
-    floorPoint.remove(index);
+    m_Point.remove(index);
 }

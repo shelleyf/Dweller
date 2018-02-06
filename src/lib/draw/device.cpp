@@ -9,6 +9,10 @@ Device::Device()
 
 }
 
+Device::~Device(){
+
+}
+
 void Device::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     painter->setPen(m_pen);
     painter->setBrush(m_Brush);

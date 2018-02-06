@@ -7,6 +7,10 @@ Door::Door()
     setDoorLeakage(0.2);
 }
 
+Door::~Door(){
+
+}
+
 void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     painter->setPen(m_pen);
     painter->drawLine(*(m_Line));

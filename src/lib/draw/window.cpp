@@ -7,6 +7,10 @@ Window::Window()
     setWindowHeight(1.5);
 }
 
+Window::~Window(){
+
+}
+
 void Window::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     painter->setPen(m_pen);
     painter->drawLine(*(m_Line));

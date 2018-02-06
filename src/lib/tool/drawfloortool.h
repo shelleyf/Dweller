@@ -17,7 +17,10 @@ protected:
 private:
     Floor *m_Floor;
     bool m_ClickPressed;
-    QPoint m_startPosition;
+    bool m_IsDrawing;
+    QPoint m_StartPosition;
+    QPoint m_EndPosition;
+    QPoint m_TempPosition;
     DwellerCanvas *m_canvas;
 };
 

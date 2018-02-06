@@ -5,6 +5,10 @@ Wall::Wall()
     setPen(QColor(255,0,0),2);
 }
 
+Wall::~Wall(){
+
+}
+
 QPen Wall::getPen(){
     return m_pen;
 }

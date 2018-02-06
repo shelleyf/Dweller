@@ -7,6 +7,7 @@ class Door : public HouseItem
 {
 public:
     Door();
+    ~Door();
 
     QPen getPen() override;
     void setPen(QColor color,int width) override;
