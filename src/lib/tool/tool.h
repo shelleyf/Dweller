@@ -8,7 +8,7 @@ class Tool
 {
 public:
     Tool();
-    virtual ~Tool();
+    ~Tool();
 
     bool handleEvent(QEvent *event);
 

@@ -10,6 +10,28 @@
 * Description : 白色靓丽
 *
 */
+QAction{
+    background:black;
+}
+
+QAction#SelectionTool:checked{
+    color:white;
+}
+QAction#DrawDeviceTool:checked{
+    color:white;
+}
+QAction#DrawDoorTool:checked{
+    color:white;
+}
+QAction#DrawFloorTool:checked{
+    color:white;
+}
+QAction#DrawWallTool:checked{
+    color:white;
+}
+QAction#DrawWindowTool:checked{
+    color:white;
+}
 
 /**********子界面背景**********/
 QWidget#customWidget {

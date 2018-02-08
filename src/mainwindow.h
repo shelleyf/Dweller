@@ -139,7 +139,7 @@ private:
     bool m_isFileSet;
     QString m_appName;
 
-
+    void uncheckAllTools();
 
 
 };

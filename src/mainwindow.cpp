@@ -115,8 +115,12 @@ void MainWindow::on_actionSimulate(){
 }
 
 void MainWindow::on_actionSelect(){
-    qDebug("action select");
+    uncheckAllTools();
+    selectAction->setChecked(true);
     canvas->m_ActiveTool = m_SelectionTool.get();
+    qDebug("action select");
+    qDebug()<<selectAction->isChecked();
+    qDebug()<<selectAction->isCheckable();
 }
 
 void MainWindow::on_actionAbout(){
@@ -124,25 +128,35 @@ void MainWindow::on_actionAbout(){
 }
 
 void MainWindow::on_actionDrawWall(){
-    qDebug("action draw wall");
+    uncheckAllTools();
+    drawWallAction->setChecked(true);
     canvas->m_ActiveTool = m_WallTool.get();
+    qDebug("action draw wall");
 }
 
 void MainWindow::on_actionDrawWindow(){
-    qDebug("action draw window");
+    uncheckAllTools();
+    drawWindowAction->setChecked(true);
     canvas->m_ActiveTool = m_WindowTool.get();
+    qDebug("action draw window");
 }
 void MainWindow::on_actionDrawDoor(){
-    qDebug("action draw door");
+    uncheckAllTools();
+    drawDoorAction->setChecked(true);
     canvas->m_ActiveTool = m_DoorTool.get();
+    qDebug("action draw door");
 }
 void MainWindow::on_actionDrawFloor(){
-    qDebug("action draw floor");
+    uncheckAllTools();
+    drawFloorAction->setChecked(true);
     canvas->m_ActiveTool = m_FloorTool.get();
+    qDebug("action draw floor");
 }
 void MainWindow::on_actionDrawDevice(){
-    qDebug("action draw device");
+    uncheckAllTools();
+    drawDeviceAction->setChecked(true);
     canvas->m_ActiveTool = m_DeviceTool.get();
+    qDebug("action draw device");
 }
 
 void MainWindow::on_actionShowSetting(){
@@ -296,36 +310,51 @@ void MainWindow::createActions(){
     selectAction->setIcon(QIcon(":/res/creator_select.png"));
     selectAction->setShortcut(QKeySequence(tr("s")));
     selectAction->setStatusTip(tr("Select item"));
+    selectAction->setCheckable(true);
     connect(selectAction, SIGNAL(triggered()), this, SLOT(on_actionSelect()));
 
     drawWallAction = new QAction(tr("DrawWall"), this);
     drawWallAction->setIcon(QIcon(":/res/creator_wall.png"));
     drawWallAction->setShortcut(QKeySequence(tr("l")));
     drawWallAction->setStatusTip(tr("draw a wall"));
+    drawWallAction->setCheckable(true);
     connect(drawWallAction, SIGNAL(triggered()), this, SLOT(on_actionDrawWall()));
 
     drawWindowAction = new QAction(tr("DrawWindow"), this);
     drawWindowAction->setIcon(QIcon(":/res/creator_window.png"));
     drawWindowAction->setShortcut(QKeySequence(tr("w")));
     drawWindowAction->setStatusTip(tr("draw a window on a wall"));
+    drawWindowAction->setCheckable(true);
     connect(drawWindowAction, SIGNAL(triggered()), this, SLOT(on_actionDrawWindow()));
 
     drawDoorAction = new QAction(tr("DrawDoor"), this);
     drawDoorAction->setIcon(QIcon(":/res/creator_door.png"));
     drawDoorAction->setShortcut(QKeySequence(tr("d")));
     drawDoorAction->setStatusTip(tr("draw a door on a wall"));
+    drawDoorAction->setCheckable(true);
     connect(drawDoorAction, SIGNAL(triggered()), this, SLOT(on_actionDrawDoor()));
 
     drawFloorAction = new QAction(tr("DrawFloor"), this);
     drawFloorAction->setIcon(QIcon(":/res/creator_floor.png"));
     drawFloorAction->setShortcut(QKeySequence(tr("f")));
     drawFloorAction->setStatusTip(tr("draw a floor"));
+    drawFloorAction->setCheckable(true);
     connect(drawFloorAction, SIGNAL(triggered()), this, SLOT(on_actionDrawFloor()));
 
     drawDeviceAction = new QAction(tr("DrawDevice"), this);
     drawDeviceAction->setIcon(QIcon(":/res/creator_device.png"));
     drawDeviceAction->setShortcut(QKeySequence(tr("v")));
     drawDeviceAction->setStatusTip(tr("set device"));
+    drawDeviceAction->setCheckable(true);
     connect(drawDeviceAction, SIGNAL(triggered()), this, SLOT(on_actionDrawDevice()));
 
+}
+
+void MainWindow::uncheckAllTools(){
+    drawWallAction->setChecked(false);
+    drawWindowAction->setChecked(false);
+    drawDoorAction->setChecked(false);
+    drawFloorAction->setChecked(false);
+    drawDeviceAction->setChecked(false);
+    selectAction->setChecked(false);
 }
