@@ -1,7 +1,8 @@
 #include "drawwindowtool.h"
 
-DrawWindowTool::DrawWindowTool(DwellerCanvas *canvas)
+DrawWindowTool::DrawWindowTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
 }
@@ -20,6 +21,7 @@ void DrawWindowTool::mousePress(QMouseEvent *event){
     m_Window->setEndPoint(m_StartPosition);
     m_Window->m_Line = new QLine(m_StartPosition,m_EndPosition);
     m_canvas->scene->addItem(m_Window);
+    m_GlobalCanvasData->add(m_Window);
 }
 
 void DrawWindowTool::mouseMove(QMouseEvent *event){

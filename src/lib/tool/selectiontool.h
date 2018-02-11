@@ -8,7 +8,7 @@
 class SelectionTool : public Tool
 {
 public:
-    SelectionTool(DwellerCanvas *canvas);
+    SelectionTool(DwellerCanvas *canvas, GlobalCanvasData *data);
     ~SelectionTool();
 
 protected:

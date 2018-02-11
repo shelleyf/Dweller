@@ -1,7 +1,8 @@
 #include "drawwalltool.h"
 
-DrawWallTool::DrawWallTool(DwellerCanvas *canvas)
+DrawWallTool::DrawWallTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
+    m_GlobalCanvasData =data;
     m_canvas = canvas;
     m_EnableViewChange = false;
 }
@@ -25,6 +26,7 @@ void DrawWallTool::mousePress(QMouseEvent *event){
     m_Wall->setEndPoint(m_StartPosition);
     m_Wall->m_Line = new QLine(m_StartPosition,m_EndPosition);
     m_canvas->scene->addItem(m_Wall);
+    m_GlobalCanvasData->add(m_Wall);
 }
 
 void DrawWallTool::mouseMove(QMouseEvent *event){

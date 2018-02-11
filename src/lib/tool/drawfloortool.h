@@ -7,7 +7,7 @@
 class DrawFloorTool : public Tool
 {
 public:
-    DrawFloorTool(DwellerCanvas *canvas);
+    DrawFloorTool(DwellerCanvas *canvas, GlobalCanvasData *data);
     ~DrawFloorTool();
 protected:
     void mousePress(QMouseEvent *event) override;

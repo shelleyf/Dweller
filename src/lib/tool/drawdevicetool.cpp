@@ -1,7 +1,8 @@
 #include "drawdevicetool.h"
 
-DrawDeviceTool::DrawDeviceTool(DwellerCanvas *canvas)
+DrawDeviceTool::DrawDeviceTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
 }
@@ -20,6 +21,7 @@ void DrawDeviceTool::mousePress(QMouseEvent *event){
     m_Device->setDevicePositionBR(m_StartPosition);
     m_Device->m_Rect = new QRectF(m_Device->getDevicePositionTL(),m_Device->getDevicePositionBR());
     m_canvas->scene->addItem(m_Device);
+    m_GlobalCanvasData->add(m_Device);
 }
 
 void DrawDeviceTool::mouseMove(QMouseEvent *event){

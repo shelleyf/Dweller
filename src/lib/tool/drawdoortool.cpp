@@ -1,7 +1,8 @@
 #include "drawdoortool.h"
 
-DrawDoorTool::DrawDoorTool(DwellerCanvas *canvas)
+DrawDoorTool::DrawDoorTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
 }
@@ -21,6 +22,7 @@ void DrawDoorTool::mousePress(QMouseEvent *event){
     m_Door->setEndPoint(m_StartPosition);
     m_Door->m_Line = new QLine(m_StartPosition,m_EndPosition);
     m_canvas->scene->addItem(m_Door);
+    m_GlobalCanvasData->add(m_Door);
 }
 
 void DrawDoorTool::mouseMove(QMouseEvent *event){

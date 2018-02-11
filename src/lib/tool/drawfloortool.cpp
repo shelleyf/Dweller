@@ -1,7 +1,8 @@
 #include "drawfloortool.h"
 
-DrawFloorTool::DrawFloorTool(DwellerCanvas *canvas):m_IsDrawing(false)
+DrawFloorTool::DrawFloorTool(DwellerCanvas *canvas, GlobalCanvasData *data):m_IsDrawing(false)
 {
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
 }
@@ -47,6 +48,7 @@ void DrawFloorTool::mousePress(QMouseEvent *event){
             m_Floor->appendPoint(m_StartPosition);
             m_Floor->m_Polygon = new QPolygonF(m_Floor->m_Point);
             m_canvas->scene->addItem(m_Floor);
+            m_GlobalCanvasData->add(m_Floor);
         }
     }
     //qDebug()<<m_Floor->m_Point;

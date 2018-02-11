@@ -12,6 +12,8 @@ MainWindow::MainWindow()
     canvas = new DwellerCanvas(scene);
     setCentralWidget(canvas);
 
+    m_GlobalCanvasData = std::unique_ptr<GlobalCanvasData>(new GlobalCanvasData());
+
     m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas));
     m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas));
     m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas));

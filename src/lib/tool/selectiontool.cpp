@@ -1,7 +1,8 @@
 #include "selectiontool.h"
 
-SelectionTool::SelectionTool(DwellerCanvas *canvas)
+SelectionTool::SelectionTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = true;
 }

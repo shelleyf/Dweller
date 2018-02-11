@@ -33,7 +33,7 @@
 #include "lib\tool\drawdevicetool.h"
 #include "lib\tool\drawwindowtool.h"
 #include "lib\tool\selectiontool.h"
-#include "lib/data/globalcanvasdata.h"
+#include "lib\data\globalcanvasdata.h"
 
 class MainWindow : public QMainWindow
 {
@@ -132,6 +132,8 @@ private:
     std::unique_ptr<DrawWallTool> m_WallTool;
     std::unique_ptr<DrawWindowTool> m_WindowTool;
     std::unique_ptr<SelectionTool> m_SelectionTool;
+    //data
+    std::unique_ptr<GlobalCanvasData> m_GlobalCanvasData;
 
     //data func save\load
     GlobalCanvasData m_gcd;

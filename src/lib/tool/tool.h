@@ -4,6 +4,8 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 
+#include "lib/data/globalcanvasdata.h"
+
 class Tool
 {
 public:
@@ -14,6 +16,8 @@ public:
 
     bool m_EnableViewChange;
     QPoint m_MapTranslate;
+    GlobalCanvasData *m_GlobalCanvasData;
+
 protected:
     virtual void mousePress(QMouseEvent* event) {}
     virtual void mouseMove(QMouseEvent* event) {}
