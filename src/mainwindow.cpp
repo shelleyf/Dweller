@@ -12,14 +12,14 @@ MainWindow::MainWindow()
     canvas = new DwellerCanvas(scene);
     setCentralWidget(canvas);
 
-    m_GlobalCanvasData = std::unique_ptr<GlobalCanvasData>(new GlobalCanvasData());
+    m_GlobalCanvasData = new GlobalCanvasData();
 
-    m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas));
-    m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas));
-    m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas));
-    m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas));
-    m_WallTool = std::unique_ptr<DrawWallTool>(new DrawWallTool(canvas));
-    m_WindowTool = std::unique_ptr<DrawWindowTool>(new DrawWindowTool(canvas));
+    m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas,m_GlobalCanvasData));
+    m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas,m_GlobalCanvasData));
+    m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas,m_GlobalCanvasData));
+    m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas,m_GlobalCanvasData));
+    m_WallTool = std::unique_ptr<DrawWallTool>(new DrawWallTool(canvas,m_GlobalCanvasData));
+    m_WindowTool = std::unique_ptr<DrawWindowTool>(new DrawWindowTool(canvas,m_GlobalCanvasData));
 
     createActions();
     createMenuBar();

@@ -11,9 +11,8 @@ public:
     void clear();
     HouseItem * find(QString string);
 
-private:
     QList<HouseItem *> m_Data;
-    QJsonObject json;
+    QJsonObject m_Json;
 };
 
 #endif // GLOBALCANVASDATA_H

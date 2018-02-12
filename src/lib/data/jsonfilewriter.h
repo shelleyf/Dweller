@@ -1,6 +1,7 @@
 #ifndef JSONFILEWRITER_H
 #define JSONFILEWRITER_H
 #include <QJsonObject>
+#include <QJsonDocument>
 #include <QJsonArray>
 #include <QPoint>
 #include <QColor>

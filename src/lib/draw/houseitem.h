@@ -7,6 +7,7 @@
 #include <QVector>
 #include <Qpen>
 #include <QColor>
+#include <QJsonObject>
 
 class HouseItem : public QGraphicsItem
 {
@@ -28,7 +29,7 @@ public:
     QString noteText;
 
     QPen m_pen;
-
+    QString m_Kind;
 
 /*protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

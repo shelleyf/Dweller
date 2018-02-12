@@ -133,7 +133,7 @@ private:
     std::unique_ptr<DrawWindowTool> m_WindowTool;
     std::unique_ptr<SelectionTool> m_SelectionTool;
     //data
-    std::unique_ptr<GlobalCanvasData> m_GlobalCanvasData;
+    GlobalCanvasData *m_GlobalCanvasData;
 
     //data func save\load
     GlobalCanvasData m_gcd;

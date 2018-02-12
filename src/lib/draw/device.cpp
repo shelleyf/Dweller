@@ -5,7 +5,7 @@ Device::Device()
     QPixmap brushPix;
     brushPix.load(":/res/texture/machine.jpg");
     m_Brush.setTexture(brushPix);
-
+    m_Kind = "Device";
 
 }
 

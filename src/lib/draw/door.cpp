@@ -5,6 +5,7 @@ Door::Door()
     setPen(QColor(0,255,0),5);
     setDoorHeight(2);
     setDoorLeakage(0.2);
+    m_Kind = "Door";
 }
 
 Door::~Door(){

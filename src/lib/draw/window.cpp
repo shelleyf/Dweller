@@ -2,9 +2,9 @@
 
 Window::Window()
 {
-
     setPen(QColor(255,255,0,255),5);
     setWindowHeight(1.5);
+    m_Kind = "Window";
 }
 
 Window::~Window(){

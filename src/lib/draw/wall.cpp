@@ -3,6 +3,7 @@
 Wall::Wall()
 {
     setPen(QColor(255,0,0),2);
+    m_Kind = "Wall";
 }
 
 Wall::~Wall(){

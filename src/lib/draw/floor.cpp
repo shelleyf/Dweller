@@ -7,7 +7,7 @@ Floor::Floor()
     brushPix.load(":/res/texture/wood-2.jpg");
     m_Brush.setTexture(brushPix);
     regionRect = new QRectF(regionTL,regionBR);
-
+    m_Kind = "Floor";
 }
 
 Floor::~Floor(){
