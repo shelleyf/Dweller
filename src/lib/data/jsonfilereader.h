@@ -17,6 +17,7 @@ class JsonFileReader
 {
 public:
     JsonFileReader();
+    ~JsonFileReader();
 
     void setup();
     bool read();
@@ -28,7 +29,8 @@ private:
     Floor *readFloor(const QJsonObject &floor);
     Window *readWindow(const QJsonObject &window);
 
-    GlobalCanvasData m_Data;
+    GlobalCanvasData *m_Data;
+    QJsonDocument *m_Doc;
 };
 
 #endif // JSONFILEREADER_H

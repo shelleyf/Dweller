@@ -15,18 +15,21 @@ class JsonFileWriter
 {
 public:
     JsonFileWriter();
+    ~JsonFileWriter();
+
 
     void setup(GlobalCanvasData *mainCanvas);
     bool write(const std::string &fileDir);
 
 private:
-    Device *writeDevice(const QJsonObject &device);
-    Door *writeDoor(const QJsonObject &door);
-    Wall *writeWall(const QJsonObject &wall);
-    Floor *writeFloor(const QJsonObject &floor);
-    Window *writeWindow(const QJsonObject &window);
+    QJsonObject writeDevice(HouseItem *device);
+    QJsonObject writeDoor(HouseItem *door);
+    QJsonObject writeWall(HouseItem *wall);
+    QJsonObject writeFloor(HouseItem *floor);
+    QJsonObject writeWindow(HouseItem *window);
 
-    GlobalCanvasData m_Data;
+    GlobalCanvasData *m_Data;
+    QJsonDocument *m_Doc;
 };
 
 #endif // JSONFILEWRITER_H

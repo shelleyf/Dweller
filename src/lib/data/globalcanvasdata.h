@@ -13,6 +13,7 @@ public:
 
 private:
     QList<HouseItem *> m_Data;
+    QJsonObject json;
 };
 
 #endif // GLOBALCANVASDATA_H
