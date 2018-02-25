@@ -35,20 +35,21 @@ public:
 
     QLine *m_Line;
     QRectF *m_Rect;
-protected:
+
     QColor m_WindowColor;
     QPoint m_WindowTL;
     QPoint m_WindowTR;
     QPoint m_WindowBL;
     QPoint m_WindowBR;
 
+    float m_WindowBottomHeight;
     float m_WindowHeight;
     float m_WindowLeakage;
 
     QPoint m_WindowStart;
     QPoint m_WindowEnd;
 
-
+    QString m_WindowName;
 
 };
 

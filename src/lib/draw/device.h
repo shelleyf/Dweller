@@ -41,7 +41,6 @@ public:
 
     QRectF *m_Rect;
 
-protected:
     QPoint m_DevicePositionTL;
     QPoint m_DevicePositionBR;
     int m_DeviceWidth;

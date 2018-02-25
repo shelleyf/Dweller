@@ -36,7 +36,8 @@ public:
     QPointF regionTL;
     QPointF regionBR;
     QRectF *regionRect;
-private:
+
+    QString m_FloorName;
     QBrush m_Brush;
 
 };

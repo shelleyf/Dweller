@@ -136,7 +136,7 @@ private:
     GlobalCanvasData *m_GlobalCanvasData;
 
     //data func save\load
-    GlobalCanvasData m_gcd;
+    //GlobalCanvasData m_gcd;
     QString m_canvasFile;
     bool m_isFileSet;
     QString m_appName;

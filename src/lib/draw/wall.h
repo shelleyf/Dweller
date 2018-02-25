@@ -31,10 +31,11 @@ public:
 
     QLine *m_Line;
     QRectF *m_Rect;
-protected:
+
     QColor m_WallColor;
     QPoint m_WallStart;
     QPoint m_WallEnd;
+    QString m_WallName;
     int m_WallThickness;
 
 

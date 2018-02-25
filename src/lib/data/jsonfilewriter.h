@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include <QPoint>
 #include <QColor>
+#include <QFile>
 #include "lib/draw/device.h"
 #include "lib/draw/door.h"
 #include "lib/draw/wall.h"
@@ -17,7 +18,6 @@ class JsonFileWriter
 public:
     JsonFileWriter();
     ~JsonFileWriter();
-
 
     void setup(GlobalCanvasData *mainCanvas);
     bool write(const std::string &fileDir);

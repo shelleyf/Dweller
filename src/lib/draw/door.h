@@ -34,10 +34,10 @@ public:
     QLine *m_Line;
     QRectF *m_Rect;
 
-protected:
     QColor m_DoorColor;
     QPoint m_DoorStart;
     QPoint m_DoorEnd;
+    QString m_DoorName;
     float m_DoorHeight;
     float m_DoorLeakage;
 
