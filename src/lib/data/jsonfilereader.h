@@ -4,6 +4,8 @@
 #include <QJsonArray>
 #include <QPoint>
 #include <QColor>
+#include <QFile>
+#include <QJsonDocument>
 
 #include "lib/draw/device.h"
 #include "lib/draw/door.h"
@@ -19,8 +21,8 @@ public:
     JsonFileReader();
     ~JsonFileReader();
 
-    void setup();
-    bool read();
+    void setup(GlobalCanvasData *mainCanvas);
+    bool read(const std::string &fileDir);
 
 private:
     Device *readDevice(const QJsonObject &device);
@@ -29,7 +31,7 @@ private:
     Floor *readFloor(const QJsonObject &floor);
     Window *readWindow(const QJsonObject &window);
 
-    GlobalCanvasData *m_Data;
+    GlobalCanvasData *m_GlobalCanvasData;
     QJsonDocument *m_Doc;
 };
 

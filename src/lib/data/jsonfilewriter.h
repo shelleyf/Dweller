@@ -29,7 +29,7 @@ private:
     QJsonObject writeFloor(HouseItem *floor);
     QJsonObject writeWindow(HouseItem *window);
 
-    GlobalCanvasData *m_Data;
+    GlobalCanvasData *m_GlobalCanvsData;
     QJsonDocument *m_Doc;
 };
 

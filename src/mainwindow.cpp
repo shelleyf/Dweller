@@ -49,7 +49,16 @@ bool MainWindow::isDirty() const{
 }
 
 void MainWindow::saveFile(){
-
+    QString ext = QFileInfo(m_canvasFile).suffix();
+    JsonFileWriter* writer = new JsonFileWriter();
+    writer->setup(m_GlobalCanvasData);
+    if(writer->write(m_canvasFile.toStdString())){
+        statusBar()->showMessage(QString("Save file:\"%1\"").arg(m_canvasFile));
+    }else{
+        QMessageBox::critical(this,"File Write Error","cant write file");
+        return;
+    }
+    delete writer;
 }
 
 QString MainWindow::getTitle()const{
@@ -61,7 +70,32 @@ void MainWindow::on_actionNewFile(){
 }
 
 void MainWindow::on_actionOpenFile(){
+    //if(!promptUnsavedWork()) return;
 
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Canvas"),
+                                                    QDir::currentPath(),
+                                                    tr("Json(*.json);;All File Types(*.*)"));
+    if(fileName.isEmpty())return;
+
+    //QString ext = QFileInfo(fileName).sufiix();
+
+    JsonFileReader *reader = new JsonFileReader();
+    reader->setup(m_GlobalCanvasData);
+    bool canRead = reader->read(fileName.toStdString());
+
+
+
+    if(canRead){
+        for(int i=0;i<m_GlobalCanvasData->m_Data.size();i++){
+            canvas->scene->addItem(m_GlobalCanvasData->m_Data.at(i));
+        }
+        canvas->repaint();
+        statusBar()->showMessage(QString("Opened file:\"%1\"").arg(fileName));
+    }else{
+        QMessageBox::critical(this,"File Read Error","cant read this file");
+
+    }
+    delete reader;
 }
 
 void MainWindow::on_actionSaveFile(){

@@ -34,6 +34,8 @@
 #include "lib\tool\drawwindowtool.h"
 #include "lib\tool\selectiontool.h"
 #include "lib\data\globalcanvasdata.h"
+#include "lib\data\jsonfilewriter.h"
+#include "lib\data\jsonfilereader.h"
 
 class MainWindow : public QMainWindow
 {
