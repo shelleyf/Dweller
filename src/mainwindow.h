@@ -101,6 +101,7 @@ private:
     QListWidget *settingList;
 
     DwellerCanvas *canvas;
+    QGraphicsScene *scene;
 
 
     //Actions
@@ -143,6 +144,8 @@ private:
     bool m_isFileSet;
     QString m_appName;
 
+    //func
+    void paintLoadFile();
     void uncheckAllTools();
 
 

@@ -29,6 +29,15 @@ public:
     QGraphicsScene *scene;
     Tool *m_ActiveTool;
 
+
+    int timerId;
+    qreal m_translateSpeed;
+    Qt::MouseButton m_translateButton;
+    QPoint m_lastMousePos;
+    bool m_bMouseTranslate;
+    qreal m_scale;
+    qreal m_zoomDelta;
+
 public slots:
     void translate(QPointF delta);
 
@@ -43,14 +52,8 @@ protected:
 //    bool event(QEvent *event) override;
 
     void scaleView(qreal scaleFactor);
-private:
-    int timerId;
-    qreal m_translateSpeed;
-    Qt::MouseButton m_translateButton;
-    QPoint m_lastMousePos;
-    bool m_bMouseTranslate;
-    qreal m_scale;
-    qreal m_zoomDelta;
+
+
 
 
     //Node *centerNode;

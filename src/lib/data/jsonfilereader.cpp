@@ -63,6 +63,8 @@ Device* JsonFileReader::readDevice(const QJsonObject &device){
     QPoint positionBR(pos["x"].toInt(),pos["y"].toInt());
     tmp->m_DevicePositionBR = positionBR;
 
+    tmp->m_Rect = new QRectF(tmp->getDevicePositionTL(),tmp->getDevicePositionBR());
+
     return tmp;
 }
 
@@ -83,6 +85,7 @@ Door* JsonFileReader::readDoor(const QJsonObject &door){
     tmp->m_DoorLeakage = door["DoorLeakage"].toDouble();
     tmp->m_DoorHeight = door["DoorHeight"].toDouble();
 
+    tmp->m_Line = new QLine(tmp->m_DoorStart,tmp->m_DoorEnd);
     return tmp;
 }
 
@@ -102,6 +105,7 @@ Wall* JsonFileReader::readWall(const QJsonObject &wall){
 
     tmp->m_WallThickness = wall["WallThickness"].toInt();
 
+    tmp->m_Line = new QLine(tmp->m_WallStart,tmp->m_WallEnd);
     return tmp;
 }
 
@@ -119,6 +123,7 @@ Floor* JsonFileReader::readFloor(const QJsonObject &floor){
         tmp->m_Point.append(point);
     }
 
+    tmp->m_Polygon = new QPolygonF(tmp->m_Point);
     return tmp;
 }
 
@@ -140,5 +145,6 @@ Window* JsonFileReader::readWindow(const QJsonObject &window){
     tmp->m_WindowBottomHeight = window["WindowBottomHeight"].toDouble();
     tmp->m_WindowHeight = window["WindowHeight"].toDouble();
 
+    tmp->m_Line = new QLine(tmp->m_WindowStart,tmp->m_WindowEnd);
     return tmp;
 }

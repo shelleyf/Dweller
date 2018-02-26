@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow()
 {
-    QGraphicsScene *scene = new QGraphicsScene;
+    scene = new QGraphicsScene;
     scene->setSceneRect(-100,-100,1000,1000);
     QPixmap pix;
     pix.load(":/res/house/house1.jpg");
@@ -83,13 +83,8 @@ void MainWindow::on_actionOpenFile(){
     reader->setup(m_GlobalCanvasData);
     bool canRead = reader->read(fileName.toStdString());
 
-
-
     if(canRead){
-        for(int i=0;i<m_GlobalCanvasData->m_Data.size();i++){
-            canvas->scene->addItem(m_GlobalCanvasData->m_Data.at(i));
-        }
-        canvas->repaint();
+        paintLoadFile();
         statusBar()->showMessage(QString("Opened file:\"%1\"").arg(fileName));
     }else{
         QMessageBox::critical(this,"File Read Error","cant read this file");
@@ -393,4 +388,12 @@ void MainWindow::uncheckAllTools(){
     drawFloorAction->setChecked(false);
     drawDeviceAction->setChecked(false);
     selectAction->setChecked(false);
+}
+
+void MainWindow::paintLoadFile(){
+    for(int i=0;i<m_GlobalCanvasData->m_Data.size();i++){
+        scene->addItem(m_GlobalCanvasData->m_Data.at(i));
+        m_GlobalCanvasData->m_Data.at(i)->update();
+    }
+    canvas->repaint();
 }
