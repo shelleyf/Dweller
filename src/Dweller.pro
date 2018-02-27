@@ -70,6 +70,9 @@ OTHER_FILES += \
     lib/simulator.js
 
 DISTFILES += \
-    lib/ui/ButtonImage.qml \
-    lib/lib3d/ControlEventSource.qml \
-    simulator.qml
+    simulator.qml\
+    ButtonImage.qml \
+    ControlEventSource.qml \
+    ControlEventSource.qml
+
+QML_IMPORT_PATH = lib/lib3d

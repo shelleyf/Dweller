@@ -38,7 +38,7 @@ Item{
                 GLCode.resizeGL(canvas3d);
             }
 
-            ControlEventSource {
+            ControlEventSource{
                 anchors.fill: parent
                 focus: true
                 id: eventSource

@@ -8,7 +8,10 @@
 THREE.OrbitControls = function ( object, domElement ) {
 
     this.object = object;
-    this.domElement = ( domElement !== undefined ) ? domElement : document;
+
+    if(domElement === undefined)return;
+
+    //this.domElement = ( domElement !== undefined ) ? domElement : document;
 
     // API
 
@@ -139,17 +142,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     this.pan = function ( distance ) {
 
-        distance.transformDirection( this.object.matrix );
+        distance.transformDirection( object.matrix );
         distance.multiplyScalar( scope.userPanSpeed );
 
-        this.object.position.add( distance );
+        object.position.add( distance );
         this.center.add( distance );
 
     };
 
     this.update = function () {
 
-        var position = this.object.position;
+        var position = object.position;
         var offset = position.clone().sub( this.center );
 
         // angle from z-axis around y-axis
@@ -186,17 +189,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
         position.copy( this.center ).add( offset );
 
-        this.object.lookAt( this.center );
+        object.lookAt( this.center );
 
         thetaDelta = 0;
         phiDelta = 0;
         scale = 1;
 
-        if ( lastPosition.distanceTo( this.object.position ) > 0 ) {
+        if ( lastPosition.distanceTo( object.position ) > 0 ) {
 
             this.dispatchEvent( changeEvent );
 
-            lastPosition.copy( this.object.position );
+            lastPosition.copy( object.position );
 
         }
 
@@ -220,7 +223,7 @@ THREE.OrbitControls = function ( object, domElement ) {
         if ( scope.enabled === false ) return;
         if ( scope.userRotate === false ) return;
 
-        event.preventDefault();
+        //event.preventDefault();;
 
         if ( event.button === 0 ) {
 
@@ -240,16 +243,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
         }
 
-        document.addEventListener( 'mousemove', onMouseMove, false );
-        document.addEventListener( 'mouseup', onMouseUp, false );
-
+        //document.addEventListener( 'mousemove', onMouseMove, false );
+        //document.addEventListener( 'mouseup', onMouseUp, false );
+        domElement.addEventListener( 'mousemove', onMouseMove, false );
+        domElement.addEventListener( 'mouseup', onMouseUp, false );
     }
 
     function onMouseMove( event ) {
 
         if ( scope.enabled === false ) return;
 
-        event.preventDefault();
+        ////event.preventDefault();;
 
         if ( state === STATE.ROTATE ) {
 
@@ -294,40 +298,34 @@ THREE.OrbitControls = function ( object, domElement ) {
         if ( scope.enabled === false ) return;
         if ( scope.userRotate === false ) return;
 
-        document.removeEventListener( 'mousemove', onMouseMove, false );
-        document.removeEventListener( 'mouseup', onMouseUp, false );
+        //document.removeEventListener( 'mousemove', onMouseMove, false );
+        //document.removeEventListener( 'mouseup', onMouseUp, false );
+
+        domElement.removeEventListener( 'mousemove', onMouseMove, false );
+        domElement.removeEventListener( 'mouseup', onMouseUp, false );
 
         state = STATE.NONE;
 
     }
 
-    function onMouseWheel( event ) {
+    function onMouseWheel( eventx,eventy ) {
+        console.log("start receive wheel event");
 
         if ( scope.enabled === false ) return;
         if ( scope.userZoom === false ) return;
 
-        var delta = 0;
 
-        if ( event.wheelDelta ) { // WebKit / Opera / Explorer 9
 
-            delta = event.wheelDelta;
+        if ( eventy > 0 ) {
 
-        } else if ( event.detail ) { // Firefox
-
-            delta = - event.detail;
-
-        }
-
-        if ( delta > 0 ) {
-
-            scope.zoomOut();
+            object.position.y += 10;
 
         } else {
 
-            scope.zoomIn();
+            object.position.y -= 10;
 
         }
-
+        console.log("end receive wheel event"+eventx+"|"+eventy);
     }
 
     function onKeyDown( event ) {
@@ -353,12 +351,11 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     }
 
-    this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-    this.domElement.addEventListener( 'mousedown', onMouseDown, false );
-    this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-    this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
-    this.domElement.addEventListener( 'keydown', onKeyDown, false );
-
+    //this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault();; }, false );
+    domElement.addEventListener( 'mousedown', onMouseDown, false );
+    domElement.addEventListener( 'mousewheel', onMouseWheel, false );
+    domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
+    domElement.addEventListener( 'keydown', onKeyDown, false );
 };
 
 THREE.OrbitControls.prototype = Object.create( THREE.EventDispatcher.prototype );

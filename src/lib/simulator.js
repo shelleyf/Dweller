@@ -86,34 +86,7 @@ function initializeGL(canvas, eventSource) {
     scene.add( light );
 
     scene.add(createShape());
-
-    //canvas3d.addEventListener('wheelevent', mousewheel,false);
-
     console.log("init ok");
-}
-
-function mousewheel(e){
-    e.preventDefault();
-    console.log("mousewheel event");
-    //e.stopPropagation();
-    if (e.wheelDelta) { //判断浏览器IE，谷歌滑轮事件
-      if (e.wheelDelta > 0) { //当滑轮向上滚动时
-        fov -= (near < fov ? 1 : 0);
-      }
-      if (e.wheelDelta < 0) { //当滑轮向下滚动时
-        fov += (fov < far ? 1 : 0);
-      }
-    } else if (e.detail) { //Firefox滑轮事件
-      if (e.detail > 0) { //当滑轮向上滚动时
-        fov -= 1;
-      }
-      if (e.detail < 0) { //当滑轮向下滚动时
-        fov += 1;
-      }
-    }
-    camera.fov = fov;
-    camera.updateProjectionMatrix();
-    renderer.render(scene, camera);
 }
 
 function resizeGL(canvas) {

@@ -54,7 +54,7 @@
         <file>res/texture/texture_earth2.jpg</file>
         <file>res/texture/wood-2.jpg</file>
         <file>res/texture/machine.jpg</file>
-        <file>lib/lib3d/ControlEventSource.qml</file>
         <file>simulator.qml</file>
+        <file>ControlEventSource.qml</file>
     </qresource>
 </RCC>
