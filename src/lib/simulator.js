@@ -1,6 +1,6 @@
 Qt.include("/lib/qt-three.js/three.js-master/build/three.js")
 Qt.include("/lib/qt-three.js/three.js-master/build/Detector.js")
-//Qt.include("/lib/qt-three.js/three.js-master/build/OrbitControls.js")
+Qt.include("/lib/qt-three.js/three.js-master/build/OrbitControls.js")
 
 var camera, scene, renderer, mesh, controls, aspect;
 var SCREEN_WIDTH, SCREEN_HEIGHT;
@@ -14,7 +14,7 @@ function log(message) {
         console.log(message)
 }
 
-function initializeGL(canvas) {
+function initializeGL(canvas, eventSource) {
     SCREEN_WIDTH = canvas.width;
     SCREEN_HEIGHT = canvas.height;
     aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
@@ -24,11 +24,11 @@ function initializeGL(canvas) {
     camera.position.y = 50;//18;
     camera.position.z = 30;
 
-    //controls = new THREE.OrbitControls(camera);
+    controls = new THREE.OrbitControls(camera, eventSource);
     clock = new THREE.Clock();
 
     renderer = new THREE.Canvas3DRenderer(
-                { canvas: canvas, antialias: true, devicePixelRatio: canvas.devicePixelRatio });
+                { canvas: canvas3d, antialias: true, devicePixelRatio: canvas.devicePixelRatio });
     renderer.setPixelRatio( canvas.devicePixelRatio );
     renderer.setSize( canvas.width, canvas.height );
 
@@ -64,8 +64,6 @@ function initializeGL(canvas) {
     var stars = new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0x888888}));
     scene.add(stars);
 
-
-
     var ambientLight = new THREE.AmbientLight( 0x404040 );
     scene.add( ambientLight );
 
@@ -89,6 +87,33 @@ function initializeGL(canvas) {
 
     scene.add(createShape());
 
+    //canvas3d.addEventListener('wheelevent', mousewheel,false);
+
+    console.log("init ok");
+}
+
+function mousewheel(e){
+    e.preventDefault();
+    console.log("mousewheel event");
+    //e.stopPropagation();
+    if (e.wheelDelta) { //判断浏览器IE，谷歌滑轮事件
+      if (e.wheelDelta > 0) { //当滑轮向上滚动时
+        fov -= (near < fov ? 1 : 0);
+      }
+      if (e.wheelDelta < 0) { //当滑轮向下滚动时
+        fov += (fov < far ? 1 : 0);
+      }
+    } else if (e.detail) { //Firefox滑轮事件
+      if (e.detail > 0) { //当滑轮向上滚动时
+        fov -= 1;
+      }
+      if (e.detail < 0) { //当滑轮向下滚动时
+        fov += 1;
+      }
+    }
+    camera.fov = fov;
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
 }
 
 function resizeGL(canvas) {

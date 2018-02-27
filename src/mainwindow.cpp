@@ -391,6 +391,7 @@ void MainWindow::uncheckAllTools(){
 }
 
 void MainWindow::paintLoadFile(){
+    m_GlobalCanvasData->clear();
     for(int i=0;i<m_GlobalCanvasData->m_Data.size();i++){
         scene->addItem(m_GlobalCanvasData->m_Data.at(i));
         m_GlobalCanvasData->m_Data.at(i)->update();

@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.0
 import QtCanvas3D 1.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.3
@@ -10,7 +10,7 @@ Item{
     width: 1280
     height: 768
     visible: true
-    focus: true
+    //focus: true
 
     SplitView {
         id: splitView
@@ -28,7 +28,7 @@ Item{
 
             // Emitted when one time initializations should happen
             onInitializeGL: {
-                GLCode.initializeGL(canvas3d);
+                GLCode.initializeGL(canvas3d, eventSource);
             }
             // Emitted each time Canvas3D is ready for a new frame
             onPaintGL: {
@@ -36,6 +36,12 @@ Item{
             }
             onResizeGL: {
                 GLCode.resizeGL(canvas3d);
+            }
+
+            ControlEventSource {
+                anchors.fill: parent
+                focus: true
+                id: eventSource
             }
         }
     }
@@ -113,9 +119,24 @@ Item{
                     Layout.fillWidth: true
                     ColumnLayout {
                         anchors.fill: parent
-                        Slider { id: sliderx; value: 0.5; Layout.fillWidth: true }
-                        Slider { id: slidery; value: 0.5; Layout.fillWidth: true }
-                        Slider { id: sliderz; value: 0.5; Layout.fillWidth: true }
+                        Slider {
+                            id: sliderx; value: 0; Layout.fillWidth: true ;
+                            minimumValue: 0;
+                            maximumValue: 360;
+                            onValueChanged: canvas3d.xSlider = value;
+                        }
+                        Slider {
+                            id: slidery; value: 0; Layout.fillWidth: true;
+                            minimumValue: 0;
+                            maximumValue: 360;
+                            onValueChanged: canvas3d.ySlider = value;
+                        }
+                        Slider {
+                            id: sliderz; value: 0; Layout.fillWidth: true;
+                            minimumValue: 0;
+                            maximumValue: 360;
+                            onValueChanged: canvas3d.zSlider = value;
+                        }
                     }
                 }
 

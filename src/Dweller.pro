@@ -70,4 +70,6 @@ OTHER_FILES += \
     lib/simulator.js
 
 DISTFILES += \
-    lib/ui/ButtonImage.qml
+    lib/ui/ButtonImage.qml \
+    lib/lib3d/ControlEventSource.qml \
+    simulator.qml

@@ -35,7 +35,6 @@
         <file>res/house/house7.jpg</file>
         <file>res/house/house8.jpg</file>
         <file>res/house/house9.jpg</file>
-        <file>simulator.qml</file>
         <file>lib/qtlogo.png</file>
         <file>lib/gl-matrix.js</file>
         <file>lib/simulator.js</file>
@@ -55,5 +54,7 @@
         <file>res/texture/texture_earth2.jpg</file>
         <file>res/texture/wood-2.jpg</file>
         <file>res/texture/machine.jpg</file>
+        <file>lib/lib3d/ControlEventSource.qml</file>
+        <file>simulator.qml</file>
     </qresource>
 </RCC>
