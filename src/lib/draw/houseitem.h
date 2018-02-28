@@ -8,6 +8,10 @@
 #include <Qpen>
 #include <QColor>
 #include <QJsonObject>
+#include <QQmlApplicationEngine>
+#include <QQmlEngine>
+#include <QQmlContext>
+#include <QtQml/qqml.h>
 
 class HouseItem : public QGraphicsItem
 {

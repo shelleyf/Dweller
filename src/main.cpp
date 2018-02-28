@@ -12,6 +12,7 @@ void setStyleSheet(const QString &style){
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    //qmlRegisterType<HouseItem>("HouseItem",1,0,"HouseItem");
 
     setStyleSheet(":style.qss");
 

@@ -3,6 +3,8 @@ import QtCanvas3D 1.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.3
 
+//import houseItem 1.0
+
 import "lib/simulator.js" as GLCode
 
 Item{
@@ -28,7 +30,7 @@ Item{
 
             // Emitted when one time initializations should happen
             onInitializeGL: {
-                GLCode.initializeGL(canvas3d, eventSource, houseMap.testString);
+                GLCode.initializeGL(canvas3d, eventSource, houseMap);
             }
             // Emitted each time Canvas3D is ready for a new frame
             onPaintGL: {

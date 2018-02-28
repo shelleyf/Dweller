@@ -28,6 +28,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
 #include <QQmlContext>
+#include <QtQml/qqml.h>
 
 #include "lib\ui\dwellercanvas.h"
 #include "lib\tool\drawdoortool.h"
@@ -39,6 +40,7 @@
 #include "lib\data\globalcanvasdata.h"
 #include "lib\data\jsonfilewriter.h"
 #include "lib\data\jsonfilereader.h"
+#include "lib\draw\houseitem.h"
 
 class MainWindow : public QMainWindow
 {

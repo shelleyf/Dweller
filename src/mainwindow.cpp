@@ -137,6 +137,7 @@ void MainWindow::on_actionDelete(){
 }
 
 void MainWindow::on_actionSimulate(){
+    m_GlobalCanvasData->convertJson();
     QQuickView *view = new QQuickView;
     QQmlEngine *q_engine = view->engine();
     QQmlContext *q_context = q_engine->rootContext();
@@ -161,9 +162,11 @@ void MainWindow::on_actionAbout(){
 
 void MainWindow::on_actionDrawWall(){
     uncheckAllTools();
+    qDebug("action draw wall1");
     drawWallAction->setChecked(true);
+    qDebug("action draw wall2");
     canvas->m_ActiveTool = m_WallTool.get();
-    qDebug("action draw wall");
+    qDebug("action draw wall3");
 }
 
 void MainWindow::on_actionDrawWindow(){

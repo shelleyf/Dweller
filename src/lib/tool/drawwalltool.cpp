@@ -2,9 +2,11 @@
 
 DrawWallTool::DrawWallTool(DwellerCanvas *canvas, GlobalCanvasData *data)
 {
-    m_GlobalCanvasData =data;
+    //qDebug()<<"construct0";
+    m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
+    //qDebug()<<"construct1";
 }
 
 DrawWallTool::~DrawWallTool(){
@@ -30,6 +32,7 @@ void DrawWallTool::mousePress(QMouseEvent *event){
 }
 
 void DrawWallTool::mouseMove(QMouseEvent *event){
+    qDebug()<<"mousemove"<<event->pos();
     if(m_ClickPressed){
         m_Wall->setEndPoint(event->pos() - m_MapTranslate);
         //m_EndPosition = event->pos();

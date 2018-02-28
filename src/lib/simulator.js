@@ -85,8 +85,14 @@ function initializeGL(canvas, eventSource, houseMap) {
     light.shadow.bias = -0.001;
     scene.add( light );
 
+    createHouseItem(houseMap.testString);
+
     scene.add(createShape());
-    console.log("init ok"+houseMap);
+    console.log("init ok"+houseMap.testString);
+}
+
+function createHouseItem(json){
+
 }
 
 function resizeGL(canvas) {
