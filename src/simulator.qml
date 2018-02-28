@@ -28,7 +28,7 @@ Item{
 
             // Emitted when one time initializations should happen
             onInitializeGL: {
-                GLCode.initializeGL(canvas3d, eventSource);
+                GLCode.initializeGL(canvas3d, eventSource, houseMap.testString);
             }
             // Emitted each time Canvas3D is ready for a new frame
             onPaintGL: {

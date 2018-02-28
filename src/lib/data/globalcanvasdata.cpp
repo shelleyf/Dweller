@@ -2,7 +2,11 @@
 
 GlobalCanvasData::GlobalCanvasData()
 {
+    m_testString = "Qml pass value";
+}
 
+QQmlListProperty<HouseItem> GlobalCanvasData::houseMap(){
+    return QQmlListProperty<HouseItem>(this, m_Data);
 }
 
 void GlobalCanvasData::add(HouseItem *item){

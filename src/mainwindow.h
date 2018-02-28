@@ -25,6 +25,9 @@
 #include <QTextStream>
 #include <memory>
 #include <QDebug>
+#include <QQmlApplicationEngine>
+#include <QQmlEngine>
+#include <QQmlContext>
 
 #include "lib\ui\dwellercanvas.h"
 #include "lib\tool\drawdoortool.h"

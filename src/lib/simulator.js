@@ -14,7 +14,7 @@ function log(message) {
         console.log(message)
 }
 
-function initializeGL(canvas, eventSource) {
+function initializeGL(canvas, eventSource, houseMap) {
     SCREEN_WIDTH = canvas.width;
     SCREEN_HEIGHT = canvas.height;
     aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
@@ -86,7 +86,7 @@ function initializeGL(canvas, eventSource) {
     scene.add( light );
 
     scene.add(createShape());
-    console.log("init ok");
+    console.log("init ok"+houseMap);
 }
 
 function resizeGL(canvas) {

@@ -137,10 +137,11 @@ void MainWindow::on_actionDelete(){
 }
 
 void MainWindow::on_actionSimulate(){
-    //SimulateWindow sw;
-//    QQmlApplicationEngine engine;
-//    engine.load(QUrl(QStringLiteral("qrc:/simulator.qml")));
     QQuickView *view = new QQuickView;
+    QQmlEngine *q_engine = view->engine();
+    QQmlContext *q_context = q_engine->rootContext();
+
+    q_context->setContextProperty("houseMap", &(*m_GlobalCanvasData));
     view->setSource(QUrl("qrc:/simulator.qml"));
     view->show();
 }
