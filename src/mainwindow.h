@@ -65,6 +65,7 @@ private slots:
     void on_actionSaveFile();
     void on_actionSaveAs();
     void on_actionExit();
+    void on_actionOpenPicture();
 
     void on_actionCut();
     void on_actionCopy();
@@ -115,6 +116,7 @@ private:
     QAction *saveFileAction;
     QAction *saveAsFileAction;
     QAction *exitAction;
+    QAction *openPictureAction;
 
     QAction *cutAction;
     QAction *copyAction;
@@ -148,6 +150,9 @@ private:
     QString m_canvasFile;
     bool m_isFileSet;
     QString m_appName;
+
+    QPixmap m_pix;
+    QGraphicsPixmapItem *m_pixItem;
 
     //func
     void paintLoadFile();

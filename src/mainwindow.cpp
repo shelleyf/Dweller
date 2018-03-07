@@ -5,9 +5,6 @@ MainWindow::MainWindow()
 {
     scene = new QGraphicsScene;
     scene->setSceneRect(-100,-100,1000,1000);
-    QPixmap pix;
-    pix.load(":/res/house/house1.jpg");
-    scene->addPixmap(pix);
 
     canvas = new DwellerCanvas(scene);
     setCentralWidget(canvas);
@@ -76,7 +73,7 @@ void MainWindow::on_actionOpenFile(){
                                                     QDir::currentPath(),
                                                     tr("Json(*.json);;All File Types(*.*)"));
     if(fileName.isEmpty())return;
-
+    m_GlobalCanvasData->clear();
     //QString ext = QFileInfo(fileName).sufiix();
 
     JsonFileReader *reader = new JsonFileReader();
@@ -118,6 +115,14 @@ void MainWindow::on_actionSaveAs(){
 
 void MainWindow::on_actionExit(){
 
+}
+
+void MainWindow::on_actionOpenPicture(){
+    scene->removeItem(dynamic_cast<QGraphicsItem*>(m_pixItem));
+    QString picName = QFileDialog::getOpenFileName(this,tr("open Image"),".",tr("Image File ( *.jpg *.png *.jpeg *.bmp)"));
+    m_pix.load(picName);
+    m_pixItem = scene->addPixmap(m_pix);
+    scene->update();
 }
 
 void MainWindow::on_actionCut(){
@@ -223,6 +228,8 @@ void MainWindow::createMenuBar(){
     editMenu->addAction(drawWindowAction);
     editMenu->addAction(drawFloorAction);
     editMenu->addAction(drawDeviceAction);
+    editMenu->addSeparator();
+    editMenu->addAction(openPictureAction);
 
     windowMenu = menuBar()->addMenu(tr("Window"));
     windowMenu->addAction(simulateAction);
@@ -258,6 +265,7 @@ void MainWindow::createToolBar(){
     fileToolBar->addAction(pasteAction);
     fileToolBar->addAction(deleteAction);
     fileToolBar->addSeparator();
+    fileToolBar->addAction(openPictureAction);
     fileToolBar->addAction(simulateAction);
 
     paintToolBar = new QToolBar(tr("paint"));
@@ -299,6 +307,11 @@ void MainWindow::createActions(){
     exitAction->setShortcut(tr("Ctrl+Q"));
     exitAction->setStatusTip(tr("Exit the application"));
     connect(exitAction, SIGNAL(triggered()), this, SLOT(on_actionExit()));
+
+    openPictureAction = new QAction(tr("P&icture"), this);
+    openPictureAction->setIcon(QIcon(":/res/creator_pic.jpg"));
+    openPictureAction->setStatusTip(tr("open housemap picture"));
+    connect(openPictureAction, SIGNAL(triggered()), this, SLOT(on_actionOpenPicture()));
 
     aboutAction = new QAction(tr("&About"), this);
     aboutAction->setStatusTip(tr("Show the application's About box"));
@@ -395,7 +408,7 @@ void MainWindow::uncheckAllTools(){
 }
 
 void MainWindow::paintLoadFile(){
-    m_GlobalCanvasData->clear();
+    //m_GlobalCanvasData->clear();
     for(int i=0;i<m_GlobalCanvasData->m_Data.size();i++){
         scene->addItem(m_GlobalCanvasData->m_Data.at(i));
         m_GlobalCanvasData->m_Data.at(i)->update();

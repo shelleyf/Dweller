@@ -6,6 +6,7 @@ Door::Door()
     setDoorHeight(2);
     setDoorLeakage(0.2);
     m_Kind = "Door";
+    m_DoorHeight = 25;
 }
 
 Door::~Door(){

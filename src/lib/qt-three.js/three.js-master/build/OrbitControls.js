@@ -63,6 +63,8 @@ THREE.OrbitControls = function ( object, domElement ) {
     var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2 };
     var state = STATE.NONE;
 
+    var boolpress;
+    var oldx,oldy;
     // events
 
     var changeEvent = { type: 'change' };
@@ -218,30 +220,38 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     }
 
-    function onMouseDown( event ) {
+    function onMouseDown( eventx,eventy,button ) {
 
         if ( scope.enabled === false ) return;
         if ( scope.userRotate === false ) return;
 
         //event.preventDefault();;
 
-        if ( event.button === 0 ) {
-
-            state = STATE.ROTATE;
-
-            rotateStart.set( event.clientX, event.clientY );
-
-        } else if ( event.button === 1 ) {
-
-            state = STATE.ZOOM;
-
-            zoomStart.set( event.clientX, event.clientY );
-
-        } else if ( event.button === 2 ) {
-
-            state = STATE.PAN;
-
+        if(button === 1){
+            boolpress = true;
         }
+
+//        if ( button === 1 ) {
+
+//            state = STATE.ROTATE;
+
+//            rotateStart.set( eventx, eventy );
+
+//            console.log("1");
+
+//        } else if ( button === 0 ) {
+
+//            state = STATE.ZOOM;
+
+//            zoomStart.set( eventx, eventy );
+
+//            console.log("0");
+
+//        } else if ( button === 2 ) {
+
+//            state = STATE.PAN;
+//            console.log("2");
+//        }
 
         //document.addEventListener( 'mousemove', onMouseMove, false );
         //document.addEventListener( 'mouseup', onMouseUp, false );
@@ -249,15 +259,28 @@ THREE.OrbitControls = function ( object, domElement ) {
         domElement.addEventListener( 'mouseup', onMouseUp, false );
     }
 
-    function onMouseMove( event ) {
-
+    function onMouseMove( eventx,eventy ) {
+        if(boolpress == true){
+            if(eventx > oldx){
+                object.position.x += 10;
+            }else if(eventx<oldx){
+                object.position.x -= 10;
+            }else{}
+            if(eventy > oldy){
+                object.position.y += 10;
+            }else if(eventy<oldy){
+                object.position.y -= 10;
+            }else{}
+        }
+        oldx = eventx;
+        oldy = eventy;
         if ( scope.enabled === false ) return;
 
         ////event.preventDefault();;
 
         if ( state === STATE.ROTATE ) {
 
-            rotateEnd.set( event.clientX, event.clientY );
+            rotateEnd.set( eventx, eventy );
             rotateDelta.subVectors( rotateEnd, rotateStart );
 
             scope.rotateLeft( 2 * Math.PI * rotateDelta.x / PIXELS_PER_ROUND * scope.userRotateSpeed );
@@ -267,7 +290,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
         } else if ( state === STATE.ZOOM ) {
 
-            zoomEnd.set( event.clientX, event.clientY );
+            zoomEnd.set( eventx, eventy );
             zoomDelta.subVectors( zoomEnd, zoomStart );
 
             if ( zoomDelta.y > 0 ) {
@@ -293,7 +316,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     }
 
-    function onMouseUp( event ) {
+    function onMouseUp( eventx,eventy ) {
+        boolpress = false;
 
         if ( scope.enabled === false ) return;
         if ( scope.userRotate === false ) return;
@@ -329,7 +353,7 @@ THREE.OrbitControls = function ( object, domElement ) {
     }
 
     function onKeyDown( event ) {
-
+        console.log(event.key+","+event);
         if ( scope.enabled === false ) return;
         if ( scope.userPan === false ) return;
 

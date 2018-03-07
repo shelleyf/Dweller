@@ -56,5 +56,7 @@
         <file>res/texture/machine.jpg</file>
         <file>simulator.qml</file>
         <file>ControlEventSource.qml</file>
+        <file>res/creator_pic.jpg</file>
+        <file>lib/lib3d/JsonToHouseObject.js</file>
     </qresource>
 </RCC>
