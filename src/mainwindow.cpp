@@ -11,12 +11,20 @@ MainWindow::MainWindow()
 
     m_GlobalCanvasData = new GlobalCanvasData();
 
-    m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas,m_GlobalCanvasData));
-    m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas,m_GlobalCanvasData));
-    m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas,m_GlobalCanvasData));
-    m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas,m_GlobalCanvasData));
-    m_WallTool = std::unique_ptr<DrawWallTool>(new DrawWallTool(canvas,m_GlobalCanvasData));
-    m_WindowTool = std::unique_ptr<DrawWindowTool>(new DrawWindowTool(canvas,m_GlobalCanvasData));
+//    m_SelectionTool = std::unique_ptr<SelectionTool>(new SelectionTool(canvas,m_GlobalCanvasData));
+//    m_DeviceTool = std::unique_ptr<DrawDeviceTool>(new DrawDeviceTool(canvas,m_GlobalCanvasData));
+//    m_DoorTool = std::unique_ptr<DrawDoorTool>(new DrawDoorTool(canvas,m_GlobalCanvasData));
+//    m_FloorTool = std::unique_ptr<DrawFloorTool>(new DrawFloorTool(canvas,m_GlobalCanvasData));
+//    m_WallTool = std::unique_ptr<DrawWallTool>(new DrawWallTool(canvas,m_GlobalCanvasData));
+//    m_WindowTool = std::unique_ptr<DrawWindowTool>(new DrawWindowTool(canvas,m_GlobalCanvasData));
+
+    m_SelectionTool = new SelectionTool(canvas,m_GlobalCanvasData);
+    m_DeviceTool = new DrawDeviceTool(canvas,m_GlobalCanvasData);
+    m_DoorTool = new DrawDoorTool(canvas,m_GlobalCanvasData);
+    m_FloorTool = new DrawFloorTool(canvas,m_GlobalCanvasData);
+    m_WallTool = new DrawWallTool(canvas,m_GlobalCanvasData);
+    m_WindowTool = new DrawWindowTool(canvas,m_GlobalCanvasData);
+
 
     createActions();
     createMenuBar();
@@ -24,8 +32,8 @@ MainWindow::MainWindow()
     createStatusBar();
     createToolBar();
 
-    canvas->m_ActiveTool = m_SelectionTool.get();
-
+    //canvas->m_ActiveTool = m_SelectionTool.get();
+    canvas->m_ActiveTool = m_SelectionTool;
 //    Wall *m_wall = new Wall();
 //    m_wall->m_Line = new QLine(QPoint(0,0),QPoint(100,100));
 //    canvas->scene->addItem(m_wall);
@@ -155,7 +163,7 @@ void MainWindow::on_actionSimulate(){
 void MainWindow::on_actionSelect(){
     uncheckAllTools();
     selectAction->setChecked(true);
-    canvas->m_ActiveTool = m_SelectionTool.get();
+    canvas->m_ActiveTool = m_SelectionTool;
     qDebug("action select");
     qDebug()<<selectAction->isChecked();
     qDebug()<<selectAction->isCheckable();
@@ -170,32 +178,32 @@ void MainWindow::on_actionDrawWall(){
     qDebug("action draw wall1");
     drawWallAction->setChecked(true);
     qDebug("action draw wall2");
-    canvas->m_ActiveTool = m_WallTool.get();
+    canvas->m_ActiveTool = m_WallTool;
     qDebug("action draw wall3");
 }
 
 void MainWindow::on_actionDrawWindow(){
     uncheckAllTools();
     drawWindowAction->setChecked(true);
-    canvas->m_ActiveTool = m_WindowTool.get();
+    canvas->m_ActiveTool = m_WindowTool;
     qDebug("action draw window");
 }
 void MainWindow::on_actionDrawDoor(){
     uncheckAllTools();
     drawDoorAction->setChecked(true);
-    canvas->m_ActiveTool = m_DoorTool.get();
+    canvas->m_ActiveTool = m_DoorTool;
     qDebug("action draw door");
 }
 void MainWindow::on_actionDrawFloor(){
     uncheckAllTools();
     drawFloorAction->setChecked(true);
-    canvas->m_ActiveTool = m_FloorTool.get();
+    canvas->m_ActiveTool = m_FloorTool;
     qDebug("action draw floor");
 }
 void MainWindow::on_actionDrawDevice(){
     uncheckAllTools();
     drawDeviceAction->setChecked(true);
-    canvas->m_ActiveTool = m_DeviceTool.get();
+    canvas->m_ActiveTool = m_DeviceTool;
     qDebug("action draw device");
 }
 

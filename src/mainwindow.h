@@ -136,12 +136,19 @@ private:
     QAction *drawDeviceAction;
 
     //tools
-    std::unique_ptr<DrawDeviceTool> m_DeviceTool;
-    std::unique_ptr<DrawDoorTool> m_DoorTool;
-    std::unique_ptr<DrawFloorTool> m_FloorTool;
-    std::unique_ptr<DrawWallTool> m_WallTool;
-    std::unique_ptr<DrawWindowTool> m_WindowTool;
-    std::unique_ptr<SelectionTool> m_SelectionTool;
+//    std::unique_ptr<DrawDeviceTool> m_DeviceTool;
+//    std::unique_ptr<DrawDoorTool> m_DoorTool;
+//    std::unique_ptr<DrawFloorTool> m_FloorTool;
+//    std::unique_ptr<DrawWallTool> m_WallTool;
+//    std::unique_ptr<DrawWindowTool> m_WindowTool;
+//    std::unique_ptr<SelectionTool> m_SelectionTool;
+
+    DrawDeviceTool *m_DeviceTool;
+    DrawDoorTool *m_DoorTool;
+    DrawFloorTool *m_FloorTool;
+    DrawWallTool *m_WallTool;
+    DrawWindowTool *m_WindowTool;
+    SelectionTool *m_SelectionTool;
     //data
     GlobalCanvasData *m_GlobalCanvasData;
 
