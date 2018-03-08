@@ -5,6 +5,7 @@ DrawWindowTool::DrawWindowTool(DwellerCanvas *canvas, GlobalCanvasData *data)
     m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
+    m_ClickPressed = false;
 }
 
 DrawWindowTool::~DrawWindowTool(){
@@ -26,11 +27,13 @@ void DrawWindowTool::mousePress(QMouseEvent *event){
 
 void DrawWindowTool::mouseMove(QMouseEvent *event){
     if(m_ClickPressed){
+        qDebug()<<"window here1";
         m_Window->setEndPoint(event->pos() - m_MapTranslate);
         m_EndPosition = event->pos() - m_MapTranslate;
         m_Window->m_Line->setP2(m_EndPosition);
         m_Window->update();
     }
+    qDebug()<<"window here2";
 }
 
 void DrawWindowTool::mouseRelease(QMouseEvent *event){

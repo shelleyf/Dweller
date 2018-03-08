@@ -5,6 +5,7 @@ DrawFloorTool::DrawFloorTool(DwellerCanvas *canvas, GlobalCanvasData *data):m_Is
     m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
+    m_ClickPressed = false;
 }
 
 DrawFloorTool::~DrawFloorTool(){

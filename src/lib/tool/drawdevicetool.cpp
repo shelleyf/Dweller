@@ -5,6 +5,8 @@ DrawDeviceTool::DrawDeviceTool(DwellerCanvas *canvas, GlobalCanvasData *data)
     m_GlobalCanvasData = data;
     m_canvas = canvas;
     m_EnableViewChange = false;
+    m_ClickPressed = false;
+    //m_Device->m_Rect = new QRectF(m_Device->getDevicePositionTL(),m_Device->getDevicePositionBR());
 }
 
 DrawDeviceTool::~DrawDeviceTool(){
@@ -20,6 +22,8 @@ void DrawDeviceTool::mousePress(QMouseEvent *event){
     m_Device->setDevicePositionTL(m_StartPosition);
     m_Device->setDevicePositionBR(m_StartPosition);
     m_Device->m_Rect = new QRectF(m_Device->getDevicePositionTL(),m_Device->getDevicePositionBR());
+    //m_Device->m_Rect->setTopLeft(m_Device->getDevicePositionTL());
+    //m_Device->m_Rect->setBottomRight(m_Device->getDevicePositionBR());
     m_canvas->scene->addItem(m_Device);
     m_GlobalCanvasData->add(m_Device);
 }
@@ -27,10 +31,15 @@ void DrawDeviceTool::mousePress(QMouseEvent *event){
 void DrawDeviceTool::mouseMove(QMouseEvent *event){
     if(m_ClickPressed){
         m_EndPosition = event->pos()-m_MapTranslate;
+        qDebug()<<"device here1";
         m_Device->setDevicePositionBR(m_EndPosition);
+        qDebug()<<"device here3";
         m_Device->m_Rect->setBottomRight(m_EndPosition);
+        qDebug()<<"device here4";
         m_Device->update();
+        qDebug()<<"device here5";
     }
+    qDebug()<<"device here2";
 }
 
 void DrawDeviceTool::mouseRelease(QMouseEvent *event){

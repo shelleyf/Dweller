@@ -18,7 +18,7 @@ protected:
 
 private:
     HouseItem *selectedItem;
-    bool m_isMousePressed;
+    bool m_ClickPressed;
     bool m_hasMoved;
     DwellerCanvas *m_canvas;
 };

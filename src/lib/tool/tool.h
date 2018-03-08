@@ -3,7 +3,7 @@
 
 #include <QMouseEvent>
 #include <QKeyEvent>
-
+#include <QDebug>
 #include "lib/data/globalcanvasdata.h"
 
 class Tool
